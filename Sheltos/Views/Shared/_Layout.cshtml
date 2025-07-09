@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sheltos - Filter search with slider home page">
+    <meta name="keywords" content="sheltos">
+    <meta name="author" content="sheltos">
+    <link rel="icon" href="~/assets/images/favicon.png" type="image/x-icon" />
+    <title>Sheltos - Filter search with slider home page</title>
+
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
+
+    <!-- range slider css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery-ui.css">
+
+    <!-- animate css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css">
+
+    <!-- Template css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/color1.css">
+</head>
+<body>
+    <!-- Loader start -->
+    <div class="loader-wrapper">
+        <div class="row loader-text">
+            <div class="col-12">
+                <img src="~/assets/images/loader/loader.gif" class="img-fluid" alt="">
+            </div>
+            <div class="col-12">
+                <div>
+                    <h3 class="mb-0">Please wait Real estate Template loading...</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Loader end -->
+    <!-- header start -->
+    <header class="header-1 header-6">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="menu">
+                        <div class="brand-logo">
+                            <a href="https://themes.pixelstrap.com/sheltos/index.html">
+                                <img src="~/assets/images/logo/6.png" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                        <nav>
+                            <div class="main-navbar">
+                                <div id="mainnav">
+                                    <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                                    <ul class="nav-menu">
+                                        <li class="back-btn">
+                                            <div class="mobile-back text-end">
+                                                <span>Back</span>
+                                                <i aria-hidden="true" class="fa fa-angle-right ps-2"></i>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a asp-controller="Home" asp-action="Index" class="nav-link menu-title">Home</a>
+
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0)" class="nav-link menu-title">property</a>
+                                            <ul class="nav-submenu menu-content">
+                                                <li><a asp-controller="Property" asp-action="Index">Apartment</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index">Mansion </a></li>
+                                                <li><a asp-controller="Property" asp-action="Index">Duplex</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index">Plots Of Land</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index">Factories</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index">Companies</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index">Lodges</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index">Hotels</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0)" class="nav-link menu-title">Pages</a>
+                                            <ul class="nav-submenu menu-content">
+
+                                                <li><a href="about-us.html">About Us </a></li>
+                                                <li><a href="terms-conditions.html">Terms&Conditions</a></li>
+                                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                                <li><a href="contact-2.html">Contact Us</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="user-profile.html" class="nav-link menu-title">User</a>
+
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0)" class="nav-link menu-title">agent</a>
+                                            <ul class="nav-submenu menu-content">
+
+                                                <li><a href="agent-list.html">Agent List</a></li>
+                                                <li><a href="add-agent.html">Agent Registration</a></li>
+                                            </ul>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <ul class="header-right">
+                            <li class="right-menu color-6">
+                                <ul class="nav-menu">
+                                    <li class="dropdown">
+                                        <a href="user-favourites.html">
+                                            <i data-feather="heart"></i>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown cart">
+                                        <a href="javascript:void(0)">
+                                            <i data-feather="shopping-cart"></i>
+                                        </a>
+                                        <ul class="nav-submenu">
+                                            <li>
+                                                <div class="media">
+                                                    <img src="~/assets/images/property/2.jpg" class="img-fluid" alt="">
+                                                    <div class="media-body">
+                                                        <a href="Propertydetails.html"><h5>Magnolia Ranch</h5></a>
+                                                        <span>$120.00*</span>
+                                                    </div>
+                                                </div>
+                                                <div class="close-circle">
+                                                    <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <img src="~/assets/images/property/3.jpg" class="img-fluid" alt="">
+                                                    <div class="media-body">
+                                                        <a href="Propertydetails.html"><h5>Magnolia Ranch</h5></a>
+                                                        <span>$140.00*</span>
+                                                    </div>
+                                                </div>
+                                                <div class="close-circle">
+                                                    <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="total">
+                                                    <h5>Subtotal :- <span class="float-end">$260.00</span></h5>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a href="login.html">
+                                            <i data-feather="user"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--  header end -->
+    <div class="container-fluid p-0">
+        <main role="main" class="pb-3 col-12" style="width: 100%; height: auto; display: block;">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer-brown">
+        <div class="footer footer-custom-col">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-2 col-md-6 order-xl">
+                        <div class="footer-links footer-details">
+                            <h5 class="footer-title d-md-none">
+                                Contact us
+                                <span class="according-menu"><i class="fas fa-chevron-down"></i></span>
+                            </h5>
+                            <div class="footer-content">
+                                <a href="https://themes.pixelstrap.com/sheltos/index.html">
+                                    <img src="../assets/images/logo/6.png" alt="" class="img-fluid">
+                                </a>
+                                <p>This home provides entertaining spaces with a kitchen opening...</p>
+                                <div class="footer-contact">
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-map-marker-alt"></i>Iba-Housing Estate,ojo,Lagos.
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-phone-alt"></i>(+234) 905 - 724 - 7888
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-envelope"></i>nwekeblessing06@gmail.com
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-3">
+                        <div class="footer-links footer-left-space">
+                            <h5 class="footer-title">
+                                About
+                                <span class="according-menu"><i class="fas fa-chevron-down"></i></span>
+                            </h5>
+                            <ul class="footer-content">
+                                <li>
+                                    <a href="about-us-2.html">About us</a>
+                                </li>
+
+                                <li>
+                                    <a href="single-property-1.html">Property</a>
+                                </li>
+                                <li>
+                                    <a href="portfolio-creative-1.html">Page</a>
+                                </li>
+
+                                <li>
+                                    <a href="contact-2.html">Agent</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="sub-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6">
+                        <div class="footer-social sub-footer-link">
+                            <ul>
+                                <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="https://accounts.google.com/"><i class="fab fa-google"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 text-end">
+                        <div class="copy-right">
+                            <p class="mb-0">Copyright 2025 Sheltos By <i data-feather="heart"></i> Blessing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- tap to top start -->
+    <div class="tap-top color-6">
+        <div>
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+    <!-- tap to top end -->
+    <!-- customizer start -->
+    <div class="customizer-wrap">
+        <div class="customizer-links">
+            <i data-feather="settings"></i>
+        </div>
+        <div class="customizer-contain custom-scrollbar">
+            <div class="setting-back">
+                <i data-feather="x"></i>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-6">Layout type</h6>
+                </div>
+                <div class="option-setting">
+                    <span>Light</span>
+                    <label class="switch">
+                        <input type="checkbox" name="chk1" value="option" class="setting-check"><span class="switch-state"></span>
+                    </label>
+                    <span>Dark</span>
+                </div>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-6">Layout Direction</h6>
+                </div>
+                <div class="option-setting">
+                    <span>LTR</span>
+                    <label class="switch">
+                        <input type="checkbox" name="chk2" value="option" class="setting-check1"><span class="switch-state"></span>
+                    </label>
+                    <span>RTL</span>
+                </div>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-6">Unlimited Color</h6>
+                </div>
+                <div class="option-setting unlimited-color-layout">
+                    <input id="ColorPicker8" type="color" value="#2c2e97" name="Default">
+                    <input id="ColorPicker9" type="color" value="#4b55c4" name="Default">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- customizer end -->
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    
+
+    <!-- popper js-->
+    <script src="../assets/js/popper.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- range slider js -->
+    <script src="../assets/js/jquery-ui.js"></script>
+    <script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../assets/js/range-slider.js"></script>
+
+    <!-- feather icon js-->
+    <script src="../assets/js/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/feather-icon/feather-icon.js"></script>
+
+    <!-- slick js -->
+    <script src="../assets/js/slick.js"></script>
+    <script src="../assets/js/slick-animation.min.js"></script>
+    <script src="../assets/js/custom-slick.js"></script>
+
+    <!-- notify js -->
+    <script src="../assets/js/bootstrap-notify.min.js"></script>
+
+    <!-- wow js-->
+    <script src="../assets/js/wow.min.js"></script>
+
+    <!-- Template js-->
+    <script src="../assets/js/script.js"></script>
+
+    <!-- Customizer js-->
+    <script src="../assets/js/customizer.js"></script>
+
+    <!-- Color-picker js-->
+    <script src="../assets/js/color/layout3.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
