@@ -1,0 +1,805 @@
+﻿@using Sheltos.ViewModel
+@model PropertyDetailViewModel
+@{
+   
+}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sheltos - Image box property details page">
+    <meta name="keywords" content="sheltos">
+    <meta name="author" content="sheltos">
+    <link rel="icon" href="~/assets/images/favicon.png" type="image/x-icon" />
+    <title>Sheltos - Image box property details page</title>
+
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
+
+    <!-- magnific css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/magnific-popup.css">
+
+    <!-- range slider css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery-ui.css">
+
+    <!-- animate css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css">
+
+    <!-- Template css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/color1.css">
+
+</head>
+
+
+<body>
+@*    <!-- Loader start -->
+    <div class="loader-wrapper">
+        <div class="row loader-img">
+            <div class="col-12">
+                <img src="../assets/images/loader/loader-2.gif" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Loader end -->*@
+    <!-- header start -->
+    <header class="inner-page light-header shadow-cls">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="menu">
+                        <div class="brand-logo">
+                            <a href="https://themes.pixelstrap.com/sheltos/index.html">
+                                <img src="~/assets/images/logo/4.png" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                        <nav>
+                            <div class="main-navbar">
+                                <div id="mainnav">
+                                    <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                                    <ul class="nav-menu">
+                                        <li class="back-btn">
+                                            <div class="mobile-back text-end">
+                                                <span>Back</span>
+                                                <i aria-hidden="true" class="fa fa-angle-right ps-2"></i>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="HomePage.html" class="nav-link menu-title">Home</a>
+
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0)" class="nav-link menu-title">property</a>
+                                            <ul class="nav-submenu menu-content">
+                                                <li><a asp-controller="Property" asp-action="Index">All</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Apartment">Apartment</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Duplex">Duplex</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Mansion">Mansion</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Land">Land</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Lodge">Lodge</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Hotel">Hotel</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0)" class="nav-link menu-title">Pages</a>
+                                            <ul class="nav-submenu menu-content">
+
+                                                <li><a asp-controller="Pages" asp-action="About-Us">About Us </a></li>
+                                                <li><a href="terms-conditions.html">Terms&Conditions</a></li>
+                                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                                <li><a href="contact-2.html">Contact Us</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="user-profile.html" class="nav-link menu-title">User</a>
+
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0)" class="nav-link menu-title">agent</a>
+                                            <ul class="nav-submenu menu-content">
+
+                                                <li><a href="agent-list.html">Agent List</a></li>
+                                                <li><a href="add-agent.html">Agent Registration</a></li>
+                                            </ul>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <ul class="header-right">
+                            <li class="right-menu color-6">
+                                <ul class="nav-menu">
+                                    <li class="dropdown">
+                                        <a href="user-favourites.html">
+                                            <i data-feather="heart"></i>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown cart">
+                                        <a href="javascript:void(0)">
+                                            <i data-feather="shopping-cart"></i>
+                                        </a>
+                                        <ul class="nav-submenu">
+                                            <li>
+                                                <div class="media">
+                                                    <img src="~/assets/images/property/2.jpg" class="img-fluid" alt="">
+                                                    <div class="media-body">
+                                                        <a href="Propertydetails.html"><h5>Magnolia Ranch</h5></a>
+                                                        <span>$120.00*</span>
+                                                    </div>
+                                                </div>
+                                                <div class="close-circle">
+                                                    <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <img src="~/assets/images/property/3.jpg" class="img-fluid" alt="">
+                                                    <div class="media-body">
+                                                        <a href="Propertydetails.html"><h5>Magnolia Ranch</h5></a>
+                                                        <span>$140.00*</span>
+                                                    </div>
+                                                </div>
+                                                <div class="close-circle">
+                                                    <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="total">
+                                                    <h5>Subtotal :- <span class="float-end">$260.00</span></h5>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a href="login.html">
+                                            <i data-feather="user"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--  header end -->
+<!-- slider section start -->
+<style>
+    .property-image-grid {
+        display: flex;
+        flex-wrap: wrap;
+        height: 500px;
+        overflow: hidden;
+    }
+
+    .left-large {
+        flex: 0 0 50%;
+        height: 100%;
+        padding: 2px;
+    }
+
+        .left-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .right-stack {
+        flex: 0 0 25%;
+        display: flex;
+        flex-direction: column;
+        padding: 2px;
+    }
+
+        .right-stack a {
+            flex: 1;
+            padding: 2px;
+        }
+
+        .right-stack img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+</style>
+    <section class="p-0 ratio3_2">
+        <div class="container-fluid">
+            <div class="zoom-image-box zoom-gallery-multiple">
+                <div class="container-fluid p-0">
+                    <div class="property-image-grid">
+
+                        <!-- Large Left Image -->
+                        @if (Model.Property.GalleryImages.Count > 0)
+                        {
+                            <div class="left-large">
+                                <a href="@Model.Property.GalleryImages[0]">
+                                    <img src="@Model.Property.GalleryImages[0]" alt="Main Image" />
+                                </a>
+                            </div>
+                        }
+
+                        <!-- Right stack 1 (Image 2 and 3) -->
+                        <div class="right-stack">
+                            @if (Model.Property.GalleryImages.Count > 1)
+                            {
+                                <a href="@Model.Property.GalleryImages[1]">
+                                    <img src="@Model.Property.GalleryImages[1]" alt="Image 2" />
+                                </a>
+                            }
+                            @if (Model.Property.GalleryImages.Count > 2)
+                            {
+                                <a href="@Model.Property.GalleryImages[2]">
+                                    <img src="@Model.Property.GalleryImages[2]" alt="Image 3" />
+                                </a>
+                            }
+                        </div>
+
+                        <!-- Right stack 2 (Image 4 and 5) -->
+                        <div class="right-stack">
+                            @if (Model.Property.GalleryImages.Count > 3)
+                            {
+                                <a href="@Model.Property.GalleryImages[3]">
+                                    <img src="@Model.Property.GalleryImages[3]" alt="Image 4" />
+                                </a>
+                            }
+                            @if (Model.Property.GalleryImages.Count > 4)
+                            {
+                                <a href="@Model.Property.GalleryImages[4]">
+                                    <img src="@Model.Property.GalleryImages[4]" alt="Image 5" />
+                                </a>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- slider section end -->
+
+    <!-- single property header start -->
+    <section class="without-top property-main small-section">
+        <div class="single-property-section ">
+            <div class="container">
+                <div class="single-title">
+                    <div class="left-single">
+                        <div class="d-flex">
+                            <h2 class="mb-0">@Model.Property.Title</h2>
+                            <span><span class="label label-shadow ms-2">@Model.Property.PropertyStatus
+                                    </span></span>
+                        </div>
+                        <p class="mt-1"
+                       @($"{Model.Property.City}, {Model.Property.State}, {Model.Property.Country}") </p>
+                        <ul>
+                            <li>
+                                <div>
+                                    <img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/double-bed.svg" class="img-fluid" alt="">
+                                    <span>@Model.Property.Beds Bedrooms</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/bathroom.svg" class="img-fluid" alt="">
+                                    <span>@Model.Property.Bathrooms Bathrooms</span>
+                                </div>
+                            </li>
+                            
+                            <li>
+                                <div>
+                                    <img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">
+                                    <span>@Model.Property.PropertySize Sq ft</span>
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="right-single">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+					<h2 class="price">@Model.Property.Price.ToString()</h2>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- single property header end -->
+
+    <!-- single property start -->
+    <section class="single-property mt-0 pt-0">
+        <div class="container">
+            <div class="row ratio_55">
+                <div class="col-xl-9 col-lg-8">
+                    <div class="description-section tab-description">
+                        <div class="description-details">
+                            <div class="desc-box">
+                                <ul class="nav nav-tabs line-tab" id="top-tab" role="tablist">
+                                    <li class="nav-item"><a data-bs-toggle="tab" class="nav-link active"
+                                        href="#about">about</a></li>
+                                    <li class="nav-item"><a data-bs-toggle="tab" class="nav-link"
+                                        href="#feature">features</a></li>
+                                </ul>
+                                <div class=" tab-content" id="top-tabContent">
+                                    <div class="tab-pane fade show active about page-section" id="about">
+                                        <h4 class="content-title">Property Details
+                                            <a href=""></a>
+                                          
+
+                                        </h4>
+                                        <div class="row">
+                                            <div class="col-md-6 col-xl-4">
+                                                <ul class="property-list-details">
+                                                    <li><span>Property Type :</span> @Model.Property.Type</li>
+                                                    <li><span>Property ID :</span> @Model.Property.Id</li>
+                                                    <li><span>Property status :</span>@Model.Property.PropertyStatus</li>
+                                                    <li><span>Operating Since :</span>@Model.Property.DateTime</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6 col-xl-4">
+                                                <ul class="property-list-details">
+                                                    <li><span>Price :</span>@Model.Property.Price</li>
+                                                    <li><span>Property Size :</span> @Model.Property.PropertySize sq / ft</li>
+                                                   
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6 col-xl-4">
+                                                <ul class="property-list-details">
+                                                    <li><span>City :</span> @Model.Property.City</li>
+                                                    <li><span>Bedrooms :</span>@Model.Property.Beds</li>
+                                                    <li><span>Bathrooms :</span> @Model.Property.Bathrooms</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4 class="content-title mt-4"></h4>
+                                        <a href="javascript:void(0)" class="attach-file">
+                                        </a>
+                                        <h4 class="mt-4">Property Brief</h4>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <p class="font-roboto">@Model.Property.Description</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade page-section" id="feature">
+                                        <h4 class="content-title">features</h4>
+                                        <div class="single-feature row">
+                                            <div class="col-xl-3 col-6">
+                                                <ul>
+                                                   @foreach(var feature in Model.Property.Features)
+                                                   {
+                                                       <li>
+                                                           <i class="fas fa-check"></i> @feature
+                                                       </li>
+												   }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                            <div class="desc-box">
+                                <div class="page-section">
+                                    <h4 class="content-title">Reviews</h4>
+                                    <div class="review">
+                                        <div class="review-box">
+                                            <div class="media">
+                                                <img src="~/assets/images/avatar/3.jpg" class="img-70" alt="">
+                                                <div class="media-body">
+                                                    <h6>Olive Yew</h6>
+                                                    <p>Sep 13, 2022</p>
+                                                    <p class="mb-0">The location, view from the rooms are just awesome. Very cool landscaping has been done Around the hotel. 
+                                                        There are small activities that you can indulge with your family.</p>
+                                                </div>
+                                                <div class="rating">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="review-box review-child">
+                                            <div class="media">
+                                                <img src="~/assets/images/avatar/4.jpg" class="img-70" alt="">
+                                                <div class="media-body">
+                                                    <h6>Allie Grater</h6>
+                                                    <p>Sep 25, 2022</p>
+                                                    <p class="mb-0">We were there for 3 nights and hotel was too good. Greenery was flaunting everywhere. There were games kept for our
+                                                        entertainment.</p>
+                                                </div>
+                                                <div class="rating">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="review-box">
+                                            <div class="media">
+                                                <img src="~/assets/images/avatar/2.jpg" class="img-70" alt="">
+                                                <div class="media-body">
+                                                    <h6>Walter Melon</h6>
+                                                    <p>Oct 20, 2022</p>
+                                                    <p class="mb-0">There are small activities that you can indulge with your family. Very cool landscaping has been done Around the hotel. The location, view from the rooms are just awesome.</p>
+                                                </div>
+                                                <div class="rating">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <h4 class="content-title">Write a Review</h4>
+                                    <form class="review-form">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" placeholder="Comment"></textarea>
+                                        </div>
+                                        <button type="submit" onclick="document.location='submit-property.html'" class="btn btn-gradient color-2 btn-pill">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property-section p-t-40">
+                        <div class="title-3 text-start inner-title">
+                            <h2>Related Properties</h2>
+                        </div>
+                        <div class="row ratio_65">
+                            <div class="col-12 property-grid-2">
+                                <div class="property-2 row column-sm zoom-gallery property-label property-grid">
+                                    @foreach (var item in Model.RelatedProperties)
+                                    {
+                                        <div class="col-md-6">
+                                            <div class="property-box">
+
+                                                <div class="property-image">
+                                                    <div class="property-slider">
+                                                        @foreach (var image in item.GalleryImages)
+                                                        {
+                                                            <a href="javascript:void(0)">
+                                                                <img src="@image" class="bg-img" alt="Propertyimage">
+                                                            </a>
+
+                                                        }
+                                                    </div>
+                                                    <div class="labels-left">
+                                                        <div>
+                                                            <span class="label label-shadow">@item.PropertyStatus</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="overlay-property-box">
+                                                        <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+                                                            <i data-feather="heart"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="property-details">
+                                                    <span class="font-roboto">@($"{item.City}, {item.State}, {item.Country}")</span>
+                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Id">
+                                                        <h3>@item.Title</h3>
+                                                    </a>
+                                                    <h6>@item.Price.ToString("C")</h6>
+                                                    <p class="font-roboto">@item.Description</p>
+                                                    <ul>
+                                                        <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : @item.Beds</li>
+                                                        <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : @item.Bathrooms</li>
+                                                        <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : @item.PropertySize</li>
+                                                    </ul>
+                                                    <div class="property-btn d-flex">
+                                                        <span>@item.DateTime</span>
+                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4">
+                    <div class="left-sidebar sticky-cls single-sidebar">
+                        <div class="filter-cards">
+                            <div class="advance-card">
+                                <h6>Contact Info</h6>
+                                <div class="category-property">
+                                    <div class="agent-info">
+                                        <div class="media">
+                                            <img src="@Model.Property.Image" class="img-50" alt="">
+                                            <div class="media-body ms-2">
+                                                <h6>@Model.Property.AgentName</h6>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <p>@Model.Property.Email</p>
+                                        </li>
+                                        <li>
+											<i data-feather="map-pin" class="me-2"></i>@Model.Property.Address
+                                        </li>
+                                        <li>
+                                            <a href="tel:@Model.Property.PhoneNumber" class="d-flex align-items-center">
+                                                <img src="https://img.icons8.com/color/48/phone.png" style="width: 25px; margin-right: 5px;" />
+												@Model.Property.PhoneNumber
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="advance-card">
+                                <h6>Request Inquiry</h6>
+                                <div class="category-property">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Your Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email Address" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input 
+                                            placeholder="phone number"
+                                            class="form-control" 
+                                            name="mobnumber" 
+                                            id="tbNumbers" 
+                                            oninput="maxLengthCheck(this)"
+                                            type = "tel"
+                                            onkeypress="javascript:return isNumber(event)"
+                                            maxlength = "9"
+                                            required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea placeholder="Message" class="form-control" rows="3"></textarea>
+                                        </div>
+                                        <button type="submit" onclick="document.location='user-listing.html'" class="btn btn-gradient color-2 btn-block btn-pill">Submit
+                                            Request</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<!-- latest jquery-->
+<script src="~/assets/js/jquery-3.6.0.min.js"></script>
+
+<!-- popper js-->
+<script src="~/assets/js/popper.min.js"></script>
+<script>
+     // Remove any extra buttons under the chat box
+    const suspiciousButtons = document.querySelectorAll(".btn, .btn-gradient");
+     suspiciousButtons.forEach(btn => {
+     if (btn.textContent.trim() === "") {
+      btn.remove();
+     }
+    });
+</script>
+
+
+<!-- magnific js -->
+<script src="~/assets/js/jquery.magnific-popup.js"></script>
+<script src="~/assets/js/zoom-gallery.js"></script>
+<script src="~/assets/js/zoom-gallery-multiple.js"></script>
+
+<!-- Bootstrap js-->
+<script src="~/assets/js/bootstrap.bundle.min.js"></script>
+
+<!-- feather icon js-->
+<script src="~/assets/js/feather-icon/feather.min.js"></script>
+<script src="~/assets/js/feather-icon/feather-icon.js"></script>
+
+<!-- video js-->
+<script src="~/assets/js/jquery.vide.min.js"></script>
+
+<!-- range slider js -->
+<script src="~/assets/js/jquery-ui.js"></script>
+<script src="~/assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="~/assets/js/range-slider.js"></script>
+
+<!-- slick js -->
+<script src="~/assets/js/slick.js"></script>
+<script src="~/assets/js/slick-animation.min.js"></script>
+<script src="~/assets/js/custom-slick.js"></script>
+
+<!-- print js -->
+<script src="~/assets/js/print.js"></script>
+
+<!-- Template js-->
+<script src="~/assets/js/script.js"></script>
+
+<!-- Customizer js-->
+<script src="~/assets/js/customizer.js"></script>
+
+<!-- Color-picker js-->
+<script src="~/assets/js/color/single-property2.js"></script>
+<script>
+    (async function trackPropertyView() {
+    const propertyId = "property-001";  // 👈 Customize or make dynamic
+    const agentId = "agent-abc";        // 👈 Can come from localStorage or a meta tag
+    const viewKey = `views-${propertyId}`;
+
+    try {
+        // 🌍 Fetch visitor location
+        const locationRes = await fetch("https://ipapi.co/json/");
+        const loc = await locationRes.json();
+
+        const viewEntry = {
+        propertyId,
+        agentId,
+        timestamp: new Date().toISOString(),
+        ip: loc.ip,
+        city: loc.city,
+        region: loc.region,
+        country: loc.country_name,
+        userAgent: navigator.userAgent
+        };
+
+        // 📦 Load existing views from localStorage
+        const existingViews = JSON.parse(localStorage.getItem(viewKey) || "[]");
+
+        // ✅ Optional: Prevent duplicate logging from same IP within 1 hour
+        const oneHourAgo = Date.now() - 3600 * 1000;
+        const alreadyLogged = existingViews.some(v =>
+        v.ip === viewEntry.ip &&
+        new Date(v.timestamp).getTime() > oneHourAgo
+        );
+
+        if (!alreadyLogged) {
+        existingViews.push(viewEntry);
+        localStorage.setItem(viewKey, JSON.stringify(existingViews));
+        console.log("✅ View tracked:", viewEntry);
+        } else {
+        console.log("⏱️ View already tracked recently");
+        }
+
+    } catch (err) {
+        console.error("Failed to track view", err);
+    }
+    })();
+</script>
+
+<script>
+    (async function trackPropertyView() {
+    const propertyId = "prop-123"; // Replace dynamically per property
+    const agentId = "agent-001";   // Replace dynamically
+    const userName = localStorage.getItem("userName") || prompt("Enter your name:");
+    localStorage.setItem("userName", userName);
+
+    const fallbackViewData = {
+        propertyId,
+        agentId,
+        userName,
+        timestamp: new Date().toISOString(),
+        ip: "",
+        city: "",
+        region: "",
+        country: "",
+        latitude: null,
+        longitude: null,
+        userAgent: navigator.userAgent
+    };
+
+    const sendView = (viewData) => {
+        fetch("https://localhost:5001/api/property-views", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(viewData)
+        })
+        .then(res => res.ok ? console.log("✅ View saved") : console.warn("❌ Failed to save"))
+        .catch(console.error);
+    };
+
+    try {
+        const geo = navigator.geolocation;
+        if (geo) {
+        geo.getCurrentPosition(async pos => {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+
+            const locRes = await fetch("https://ipapi.co/json/");
+            const loc = await locRes.json();
+
+            sendView({
+            ...fallbackViewData,
+            ip: loc.ip,
+            city: loc.city,
+            region: loc.region,
+            country: loc.country_name,
+            latitude: lat,
+            longitude: lon
+            });
+        }, async () => {
+            const locRes = await fetch("https://ipapi.co/json/");
+            const loc = await locRes.json();
+
+            sendView({
+            ...fallbackViewData,
+            ip: loc.ip,
+            city: loc.city,
+            region: loc.region,
+            country: loc.country_name
+            });
+        });
+        }
+    } catch (e) {
+        console.error("Tracking failed:", e);
+    }
+    })();
+</script>
+
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/68680a9a91bdae190d9ab27d/1ivb6irnr';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+<!-- <script>
+    function startChat() {
+      const agent = document.getElementById("agentName").innerText;
+      const message = document.getElementById("chatInput").value;
+
+      if (!message) return alert("Please type a message.");
+
+      // Save latest message for agent
+      const all = JSON.parse(localStorage.getItem("chat.messages") || "[]");
+      all.push({ agent, message, time: new Date().toLocaleTimeString() });
+
+      localStorage.setItem("chat.messages", JSON.stringify(all));
+      localStorage.setItem("chat.agent", agent);
+      localStorage.setItem("chat.message", message);
+
+      window.location.href = "messages.html";
+    }
+  </script>-->
+
+
+<!-- single property end -->
+</body>

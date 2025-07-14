@@ -493,15 +493,9 @@ progress {
 html, body {
     margin: 0;
     padding: 0;
+    padding-top: 0;!important;
     overflow-x: hidden;
 }
-
-.container,
-.container-fluid {
-    max-width: 100% !important;
-    padding: 0 !important;
-}
-
 
 .container,
 .container-fluid,

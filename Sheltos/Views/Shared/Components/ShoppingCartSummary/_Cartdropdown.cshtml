@@ -1,0 +1,31 @@
+﻿@using Sheltos.ViewModel
+@model ShoppingCartViewModel
+@{
+}
+<ul class="nav-submenu">
+    @foreach (var item in Model.ShoppingCartItems)
+    {
+        <li>
+            <div class="media">
+                <img src="@item.ImageUrl" class="img-fluid" alt="">
+                <div class="media-body">
+                    <a asp-controller="Property" asp-action="Details" asp-route-id="@item.PropertyId"><h5>@item.Title</h5></a>
+                    <span>@item.Price.ToString("C")</span>
+                </div>
+            </div>
+            <div class="close-circle">
+                <a asp-controller="ShoppingCart" asp-action="RemoveFromCart" asp-route-id="@item.PropertyId">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+            </div>
+        </li>
+
+    }
+    <li>
+        <div class="total">
+            <h5>Subtotal :- <span class="float-end">@Model.TotalPrice.ToString("C")</span></h5>
+        </div>
+    </li>
+
+
+</ul>

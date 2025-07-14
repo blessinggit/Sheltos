@@ -1,0 +1,153 @@
+﻿@using Sheltos.ViewModel
+@using System.Web
+@model AgentViewModel
+@{
+	Layout = "_Layout2";
+}
+<!-- breadcrumb start -->
+<section class="breadcrumb-section p-0">
+    <img src="~/assets/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <div>
+                <h2>Dashboard</h2>
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Agent Registration</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb end -->
+<!-- user dashboard section start -->
+<section class="user-dashboard small-section">
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Container-fluid start -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                                <h5>Agent Registration</h5>
+                            </div>
+                            <div class="card-body admin-form">
+                                <form class="row gx-3" asp-action="CreateAgent" enctype="multipart/form-data">
+                                    <div class="form-group col-md-6 col-sm-6">
+                                        <label asp-for="FullName">Full Name <span class="font-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="enter your name" asp-for="FullName" required="">
+                                    </div>
+                                    <div class="form-group col-md-4 col-sm-6">
+                                        <label asp-for="Gender" class="form-label">Gender <span class="font-danger">*</span></label>
+                                        <select asp-for="Gender" class="form-select">
+                                            <option value="">-- Select Gender --</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                        <span asp-validation-for="Gender" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group col-md-4 col-sm-6">
+                                        <label asp-for="PhoneNumber">Phone number <span class="font-danger">*</span></label>
+                                        <input type="number" class="form-control" placeholder="enter your mobile number" asp-for="PhoneNumber" required="">
+                                    </div>
+                                    <div class="form-group col-md-4 col-sm-6">
+                                        <label asp-for="DateOfBirth" >Date of birth <span class="font-danger">*</span></label>
+                                        <input asp-for="DateOfBirth" class="form-control" type="date" />
+                                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group col-md-4 col-sm-6">
+                                        <label asp-for="Email">Email Address <span class="font-danger">*</span></label>
+                                        <input type="email" class="form-control" placeholder="enter your email" asp-for="Email" required="">
+                                    </div>
+                                   
+                                    <div class="form-group col-sm-10">
+                                        <label asp-for="Qualifications">Qualification</label>
+                                        <textarea class="form-control" asp-for="Qualifications" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label asp-for="Address">Address</label>
+                                        <input type="text" class="form-control" asp-for="Address" placeholder="Enter your Address">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label asp-for="NinNo">NIN-No</label>
+                                        <input type="number" class="form-control" asp-for="NinNo" placeholder="Enter NIN Number">
+                                    </div>
+                                
+                                    <div class="form-group col-md-6">
+                                        <label asp-for="ImageFile" >Agent Image</label>
+                                        <input asp-for="ImageFile" type="file" class="form-control" />
+                                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                    </div><br />
+                                    <div class="form-btn">
+                                        <button type="submit" class="btn btn-pill btn-gradient color-4">Submit</button>
+                                        <button type="button" class="btn btn-pill btn-dashed color-4">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid end -->
+
+        </div>
+    </div>
+   
+</section>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '@Html.Raw(HttpUtility.JavaScriptStringEncode(TempData["SuccessMessage"].ToString()))',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    }
+}
+
+<!-- customizer end -->
+<!-- latest jquery-->
+<script src="~/assets/js/jquery-3.6.0.min.js"></script>
+
+<!-- popper js-->
+<script src="~/assets/js/popper.min.js"></script>
+
+<!-- feather icon js-->
+<script src="~/assets/js/feather-icon/feather.min.js"></script>
+<script src="~/assets/js/feather-icon/feather-icon.js"></script>
+
+<!-- slick js -->
+<script src="~/assets/js/slick.js"></script>
+<script src="~/assets/js/slick-animation.min.js"></script>
+<script src="~/assets/js/custom-slick.js"></script>
+
+<!-- Bootstrap js-->
+<script src="~/assets/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Dropzone js -->
+<script src="~/assets/js/dropzone/dropzone.js"></script>
+<script src="~/assets/js/dropzone/dropzone-script.js"></script>
+
+<!-- Template js-->
+<script src="~/assets/js/script.js"></script>
+
+<!-- Customizer js-->
+<script src="~/assets/js/customizer.js"></script>
+
+<!-- wow js-->
+<script src="~/assets/js/wow.min.js"></script>
+
+<!-- Color-picker js-->
+<script src="~/assets/js/color/template-color.js"></script>
+

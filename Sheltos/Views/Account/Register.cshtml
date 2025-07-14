@@ -1,0 +1,130 @@
+﻿@using Sheltos.ViewModel
+@model RegisterViewModel
+@{
+	Layout = "_Layout2";
+}
+
+    <!--  header end -->
+    <!-- breadcrumb start -->
+    <section class="breadcrumb-section p-0">
+        <img src="../assets/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <div>
+                    <h2>Sign up</h2>
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Sign up</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb end -->
+    <!-- section start -->
+    <section>
+        <div class="container">
+            <div class="row log-in sign-up">
+                <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 col-12">
+                    <div class="theme-card">
+                        <div class="title-3 text-start">
+                            <h2>Sign up</h2>
+                        </div>
+                        <form asp-action="Register" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                           
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i data-feather="mail"></i>
+                                        </div>
+                                    </div>
+                                    <input type="email" asp-for="Email" class="form-control" placeholder="Enter email address" required>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i data-feather="lock"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password" id="pwd-input" asp-for="Password" class="form-control" placeholder="Password" maxlength="20" required>
+                                    
+                                    <div class="input-group-apend">
+                                        <div class="input-group-text">
+                                            <i id="pwd-icon" class="far fa-eye-slash"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="important-note">
+								password should be a minimum of 8 characters and should contains numbers and atleast one upper case letter.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i data-feather="lock"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password" id=" confirm pwd-input" asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Pasaword" maxlength="20" required><br />
+                                   
+                                    <div class="input-group-apend">
+                                        <div class="input-group-text">
+                                            <i id="confirm pwd-icon" class="far fa-eye-slash"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-gradient btn-pill color-2 me-sm-3 me-2">
+                                    Create Account</button>
+                                    <a asp-action="Login" asp-controller="Account" class="btn btn-dashed btn-pill color-2">Log in</a>
+                            </div>
+                            <div class="divider">
+                                <h6>or</h6>
+                            </div>
+                            <div>
+                                <h6>Sign up with</h6>
+                                <div class="row social-connect">
+                                    <div class="col-6">
+                                        <a href="https://www.facebook.com/" class="btn btn-social btn-flat facebook p-0">
+                                            <i class="fab fa-facebook-f"></i>
+                                            <span>Facebook</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="https://twitter.com/" class="btn btn-social btn-flat twitter p-0">
+                                            <i class="fab fa-twitter"></i>
+                                            <span>Twitter</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="https://account.google.com/" class="btn btn-social btn-flat google p-0">
+                                            <i class="fab fa-google"></i>
+                                            <span>Google</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="https://www.linkedin.com/" class="btn btn-social btn-flat linkedin p-0">
+                                            <i class="fab fa-linkedin-in"></i>
+                                            <span>Linkedin</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section end -->
+    <!-- footer start -->
+   

@@ -22,6 +22,7 @@ namespace Sheltos.Models
         public int Beds { get; set; }
 
         public int Bathrooms { get; set; }
+        public double PropertySize { get; set; }
 
         public DateTime DateTime { get; set; } = DateTime.UtcNow;
 
@@ -31,9 +32,9 @@ namespace Sheltos.Models
       
         public Agent? Agent { get; set; }
 
-        public ICollection<PropertyImage>?Gallery { get; set; } 
+        public ICollection<PropertyImage>? Gallery { get; set; } 
 
-        public ICollection<PropertyFeature>?Features { get; set; }
+        public ICollection<PropertyFeature> Features { get; set; }
 
 
 

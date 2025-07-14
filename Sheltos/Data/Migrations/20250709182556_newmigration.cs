@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Sheltos.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class secondmigration : Migration
+    public partial class newmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,6 +30,23 @@ namespace Sheltos.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Agents",
+                columns: table => new
+                {
+                    AgentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Agents", x => x.AgentId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Features",
                 columns: table => new
                 {
@@ -38,29 +57,6 @@ namespace Sheltos.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Features", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Agents",
-                columns: table => new
-                {
-                    AgentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Agents", x => x.AgentId);
-                    table.ForeignKey(
-                        name: "FK_Agents_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "AddressId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,9 +74,7 @@ namespace Sheltos.Data.Migrations
                     Bathrooms = table.Column<int>(type: "int", nullable: false),
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PropertyStatus = table.Column<int>(type: "int", nullable: true),
-                    AgentId = table.Column<int>(type: "int", nullable: false),
-                    AddressId1 = table.Column<int>(type: "int", nullable: true),
-                    AgentId1 = table.Column<int>(type: "int", nullable: true)
+                    AgentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,21 +86,11 @@ namespace Sheltos.Data.Migrations
                         principalColumn: "AddressId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Properties_Addresses_AddressId1",
-                        column: x => x.AddressId1,
-                        principalTable: "Addresses",
-                        principalColumn: "AddressId");
-                    table.ForeignKey(
                         name: "FK_Properties_Agents_AgentId",
                         column: x => x.AgentId,
                         principalTable: "Agents",
                         principalColumn: "AgentId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Properties_Agents_AgentId1",
-                        column: x => x.AgentId1,
-                        principalTable: "Agents",
-                        principalColumn: "AgentId");
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -139,7 +123,7 @@ namespace Sheltos.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PropertyId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -153,10 +137,84 @@ namespace Sheltos.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Agents_AddressId",
+            migrationBuilder.InsertData(
+                table: "Addresses",
+                columns: new[] { "AddressId", "City", "Country", "State", "ZipCode" },
+                values: new object[,]
+                {
+                    { 1, "ojo", "Nigeria", "Lagos", 0 },
+                    { 2, "New heaven", "Brazil", "Enugu", 0 },
+                    { 3, "Tempsite", "Nigeria", "Anambra", 0 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Agents",
-                column: "AddressId");
+                columns: new[] { "AgentId", "Address", "Email", "FullName", "ImageUrl", "PhoneNumber" },
+                values: new object[,]
+                {
+                    { 1, "iba,ojo,lagos", "john@example.com", "John Doe", "/assets/images/avatar/3.jpg", "08012345678" },
+                    { 2, "New heaven,enugu", "nwekeblessing06@gmail.com", "Gennie Doe", "/assets/images/avatar/3.jpg", "09057247888" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Features",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Free Wi-Fi" },
+                    { 2, "Power Supply" },
+                    { 3, "Constant Water Supply" },
+                    { 4, "Security Guard" },
+                    { 5, "Elevator lift" },
+                    { 6, "CCTV" },
+                    { 7, "Laundry Service" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Properties",
+                columns: new[] { "Id", "AddressId", "AgentId", "Bathrooms", "Beds", "DateTime", "Description", "Price", "PropertyStatus", "Title", "Type" },
+                values: new object[,]
+                {
+                    { 1, 3, 1, 3, 4, new DateTime(2025, 7, 9, 18, 25, 55, 698, DateTimeKind.Utc).AddTicks(9182), "Residences can be classified by and how they are connected residences and land. Different types of housing tenure can be used for the same physical type.", 125000.0, 1, "Luxury Beachfront Villa", "Duplex" },
+                    { 2, 2, 1, 3, 3, new DateTime(2025, 7, 9, 18, 25, 55, 698, DateTimeKind.Utc).AddTicks(9186), "An interior designer is someone who plans,researches,coordinates,management and manages such enhancement projects.", 300000000.0, 0, "Hidden Spring Hideway", "Apartment" },
+                    { 3, 1, 2, 1, 2, new DateTime(2025, 7, 9, 18, 25, 55, 698, DateTimeKind.Utc).AddTicks(9188), "An apartment is a self-contained housing unit that occupies only part of a building, typically on a single level.", 75000.0, 1, "Modern City Apartment", "Apartment" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PropertyFeatures",
+                columns: new[] { "FeatureId", "PropertyId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 1 },
+                    { 5, 1 },
+                    { 2, 2 },
+                    { 3, 2 },
+                    { 4, 2 },
+                    { 6, 2 },
+                    { 1, 3 },
+                    { 2, 3 },
+                    { 4, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PropertyImages",
+                columns: new[] { "Id", "ImageUrl", "PropertyId" },
+                values: new object[,]
+                {
+                    { 1, "/assets/images/property/10.jpg", 1 },
+                    { 2, "/assets/images/property/5.jpg", 1 },
+                    { 3, "/assets/images/property/3.jpg", 1 },
+                    { 4, "/assets/images/property/4.jpg", 1 },
+                    { 5, "/assets/images/property/10.jpg", 2 },
+                    { 6, "/assets/images/property/5.jpg", 2 },
+                    { 7, "/assets/images/property/3.jpg", 2 },
+                    { 8, "/assets/images/property/4.jpg", 2 },
+                    { 9, "/assets/images/property/10.jpg", 3 },
+                    { 10, "/assets/images/property/5.jpg", 3 },
+                    { 11, "/assets/images/property/3.jpg", 3 },
+                    { 12, "/assets/images/property/4.jpg", 3 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Properties_AddressId",
@@ -164,19 +222,9 @@ namespace Sheltos.Data.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Properties_AddressId1",
-                table: "Properties",
-                column: "AddressId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Properties_AgentId",
                 table: "Properties",
                 column: "AgentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Properties_AgentId1",
-                table: "Properties",
-                column: "AgentId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PropertyFeatures_FeatureId",
@@ -205,10 +253,10 @@ namespace Sheltos.Data.Migrations
                 name: "Properties");
 
             migrationBuilder.DropTable(
-                name: "Agents");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "Agents");
         }
     }
 }

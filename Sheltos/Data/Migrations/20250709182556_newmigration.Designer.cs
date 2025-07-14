@@ -12,8 +12,8 @@ using Sheltos.Data;
 namespace Sheltos.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250709141649_second-migration")]
-    partial class secondmigration
+    [Migration("20250709182556_newmigration")]
+    partial class newmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -253,6 +253,32 @@ namespace Sheltos.Data.Migrations
                     b.HasKey("AddressId");
 
                     b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            AddressId = 1,
+                            City = "ojo",
+                            Country = "Nigeria",
+                            State = "Lagos",
+                            ZipCode = 0
+                        },
+                        new
+                        {
+                            AddressId = 2,
+                            City = "New heaven",
+                            Country = "Brazil",
+                            State = "Enugu",
+                            ZipCode = 0
+                        },
+                        new
+                        {
+                            AddressId = 3,
+                            City = "Tempsite",
+                            Country = "Nigeria",
+                            State = "Anambra",
+                            ZipCode = 0
+                        });
                 });
 
             modelBuilder.Entity("Sheltos.Models.Agent", b =>
@@ -263,8 +289,9 @@ namespace Sheltos.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AgentId"));
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -284,9 +311,27 @@ namespace Sheltos.Data.Migrations
 
                     b.HasKey("AgentId");
 
-                    b.HasIndex("AddressId");
-
                     b.ToTable("Agents");
+
+                    b.HasData(
+                        new
+                        {
+                            AgentId = 1,
+                            Address = "iba,ojo,lagos",
+                            Email = "john@example.com",
+                            FullName = "John Doe",
+                            ImageUrl = "/assets/images/avatar/3.jpg",
+                            PhoneNumber = "08012345678"
+                        },
+                        new
+                        {
+                            AgentId = 2,
+                            Address = "New heaven,enugu",
+                            Email = "nwekeblessing06@gmail.com",
+                            FullName = "Gennie Doe",
+                            ImageUrl = "/assets/images/avatar/3.jpg",
+                            PhoneNumber = "09057247888"
+                        });
                 });
 
             modelBuilder.Entity("Sheltos.Models.Feature", b =>
@@ -304,6 +349,43 @@ namespace Sheltos.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Features");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Free Wi-Fi"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Power Supply"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Constant Water Supply"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Security Guard"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Elevator lift"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "CCTV"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Laundry Service"
+                        });
                 });
 
             modelBuilder.Entity("Sheltos.Models.Property", b =>
@@ -317,13 +399,7 @@ namespace Sheltos.Data.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AddressId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("AgentId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AgentId1")
                         .HasColumnType("int");
 
                     b.Property<int>("Bathrooms")
@@ -354,13 +430,53 @@ namespace Sheltos.Data.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("AddressId1");
-
                     b.HasIndex("AgentId");
 
-                    b.HasIndex("AgentId1");
-
                     b.ToTable("Properties");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressId = 3,
+                            AgentId = 1,
+                            Bathrooms = 3,
+                            Beds = 4,
+                            DateTime = new DateTime(2025, 7, 9, 18, 25, 55, 698, DateTimeKind.Utc).AddTicks(9182),
+                            Description = "Residences can be classified by and how they are connected residences and land. Different types of housing tenure can be used for the same physical type.",
+                            Price = 125000.0,
+                            PropertyStatus = 1,
+                            Title = "Luxury Beachfront Villa",
+                            Type = "Duplex"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressId = 2,
+                            AgentId = 1,
+                            Bathrooms = 3,
+                            Beds = 3,
+                            DateTime = new DateTime(2025, 7, 9, 18, 25, 55, 698, DateTimeKind.Utc).AddTicks(9186),
+                            Description = "An interior designer is someone who plans,researches,coordinates,management and manages such enhancement projects.",
+                            Price = 300000000.0,
+                            PropertyStatus = 0,
+                            Title = "Hidden Spring Hideway",
+                            Type = "Apartment"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddressId = 1,
+                            AgentId = 2,
+                            Bathrooms = 1,
+                            Beds = 2,
+                            DateTime = new DateTime(2025, 7, 9, 18, 25, 55, 698, DateTimeKind.Utc).AddTicks(9188),
+                            Description = "An apartment is a self-contained housing unit that occupies only part of a building, typically on a single level.",
+                            Price = 75000.0,
+                            PropertyStatus = 1,
+                            Title = "Modern City Apartment",
+                            Type = "Apartment"
+                        });
                 });
 
             modelBuilder.Entity("Sheltos.Models.PropertyFeature", b =>
@@ -376,6 +492,58 @@ namespace Sheltos.Data.Migrations
                     b.HasIndex("FeatureId");
 
                     b.ToTable("PropertyFeatures");
+
+                    b.HasData(
+                        new
+                        {
+                            PropertyId = 1,
+                            FeatureId = 1
+                        },
+                        new
+                        {
+                            PropertyId = 1,
+                            FeatureId = 2
+                        },
+                        new
+                        {
+                            PropertyId = 1,
+                            FeatureId = 5
+                        },
+                        new
+                        {
+                            PropertyId = 2,
+                            FeatureId = 2
+                        },
+                        new
+                        {
+                            PropertyId = 2,
+                            FeatureId = 3
+                        },
+                        new
+                        {
+                            PropertyId = 2,
+                            FeatureId = 6
+                        },
+                        new
+                        {
+                            PropertyId = 2,
+                            FeatureId = 4
+                        },
+                        new
+                        {
+                            PropertyId = 3,
+                            FeatureId = 1
+                        },
+                        new
+                        {
+                            PropertyId = 3,
+                            FeatureId = 2
+                        },
+                        new
+                        {
+                            PropertyId = 3,
+                            FeatureId = 4
+                        });
                 });
 
             modelBuilder.Entity("Sheltos.Models.PropertyImage", b =>
@@ -387,7 +555,6 @@ namespace Sheltos.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PropertyId")
@@ -398,6 +565,80 @@ namespace Sheltos.Data.Migrations
                     b.HasIndex("PropertyId");
 
                     b.ToTable("PropertyImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImageUrl = "/assets/images/property/10.jpg",
+                            PropertyId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImageUrl = "/assets/images/property/5.jpg",
+                            PropertyId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ImageUrl = "/assets/images/property/3.jpg",
+                            PropertyId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ImageUrl = "/assets/images/property/4.jpg",
+                            PropertyId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImageUrl = "/assets/images/property/10.jpg",
+                            PropertyId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImageUrl = "/assets/images/property/5.jpg",
+                            PropertyId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImageUrl = "/assets/images/property/3.jpg",
+                            PropertyId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ImageUrl = "/assets/images/property/4.jpg",
+                            PropertyId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ImageUrl = "/assets/images/property/10.jpg",
+                            PropertyId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ImageUrl = "/assets/images/property/5.jpg",
+                            PropertyId = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ImageUrl = "/assets/images/property/3.jpg",
+                            PropertyId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ImageUrl = "/assets/images/property/4.jpg",
+                            PropertyId = 3
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -451,38 +692,19 @@ namespace Sheltos.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Sheltos.Models.Agent", b =>
-                {
-                    b.HasOne("Sheltos.Models.Address", "Address")
-                        .WithMany("Agents")
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
-                });
-
             modelBuilder.Entity("Sheltos.Models.Property", b =>
                 {
                     b.HasOne("Sheltos.Models.Address", "Address")
-                        .WithMany()
+                        .WithMany("Properties")
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Sheltos.Models.Address", null)
-                        .WithMany("Properties")
-                        .HasForeignKey("AddressId1");
-
                     b.HasOne("Sheltos.Models.Agent", "Agent")
-                        .WithMany()
-                        .HasForeignKey("AgentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Sheltos.Models.Agent", null)
                         .WithMany("Properties")
-                        .HasForeignKey("AgentId1");
+                        .HasForeignKey("AgentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Address");
 
@@ -521,8 +743,6 @@ namespace Sheltos.Data.Migrations
 
             modelBuilder.Entity("Sheltos.Models.Address", b =>
                 {
-                    b.Navigation("Agents");
-
                     b.Navigation("Properties");
                 });
 

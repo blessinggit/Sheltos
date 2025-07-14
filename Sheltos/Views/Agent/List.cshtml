@@ -1,0 +1,173 @@
+﻿@using Sheltos.ViewModel
+@model IEnumerable<AgentListViewModel>
+@{
+	Layout = "_Layout2";
+}
+<!-- breadcrumb start -->
+<section class="breadcrumb-section p-0">
+    <img src="~/assets/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <div>
+                <h2>Agent List</h2>
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Agent List</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb end -->
+<!-- agent grid section start -->
+<section class="agent-section property-section">
+    <div class="container">
+        <div class="row ratio2_3">
+            <div class="col-xl-11 col-lg-8 property-grid-3 agent-grids">
+                <div class="filter-panel">
+                    <div class="top-panel">
+                        <div>
+                            <h2>Agent Lists</h2>
+                            <span class="show-result">Listings</span>
+                        </div>
+                        <ul class="grid-list-filter d-flex">
+
+
+                            <li class="grid-btn">
+                                <a href="javascript:void(0)" class="grid-layout-view">
+                                    <i data-feather="grid"></i>
+                                </a>
+                            </li>
+                            <li class="list-btn active">
+                                <a href="javascript:void(0)" class="list-layout-view">
+                                    <i data-feather="list"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="property-wrapper-grid list-view">
+                    <div class="property-2 row column-sm property-label property-grid list-view">
+                        <div class="col-md-12 col-xl-6 wow fadeInUp">
+                            @foreach (var agent in Model)
+                            {
+                                <div class="property-box">
+                                    <div class="agent-image">
+                                        <div>
+                                            <img src="@agent.Image" class="bg-img" alt="">
+
+                                            <div class="agent-overlay"></div>
+                                            <div class="overlay-content">
+                                                <ul>
+                                                    <li>
+                                                        <a href="https://accounts.google.com/"><img src="../assets/images/about/icon-1.png" alt=""></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://twitter.com/"><img src="../assets/images/about/icon-2.png" alt=""></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://www.facebook.com/"><img src="../assets/images/about/icon-3.png" alt=""></a>
+                                                    </li>
+                                                </ul>
+                                                <span>Connect</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="agent-content">
+                                        <h3><a href="agent-profile.html">@agent.FullName</a></h3>
+                                        <p class="font-roboto">Real estate Agent</p>
+                                        <ul class="agent-contact col-5">
+
+                                            <li>
+                                                <a class="d-flex align-items-center mb-2" href="https://mail.google.com/mail/?view=cm&fs=1&to=@agent.Email" target="_blank">
+                                                    <img src="https://img.icons8.com/color/48/gmail-new.png" style="width: 25px;margin-right: 5px;" />
+													@agent.Email
+                                                </a>
+                                            </li>
+                                            <a href="tel:@agent.PhoneNumber" class="d-flex align-items-center">
+                                                <img src="https://img.icons8.com/color/48/phone.png" style="width: 25px; margin-right: 5px;" />
+												@agent.PhoneNumber
+                                            </a>
+                                            <li>
+                                                <a class="d-flex align-items-center mb-2 whatsapp-link" href="https://wa.me/@agent.PhoneNumber" target="_blank">
+													<img src="https://img.icons8.com/color/48/whatsapp--v1.png" style="width:30px;">@agent.PhoneNumber
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="justify-content-between d-flex">
+
+                                            <a asp-controller="Agent" asp-action="Details" asp-route-id="@agent.AgentId">View profile <i class="fas fa-arrow-right"></i></a>
+                                        </div>
+
+                                    </div>
+                                </div><br />
+                            }
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- agent grid section end -->
+<!-- footer start -->
+
+<!-- wow js-->
+<script src="~/assets/js/wow.min.js"></script>
+
+<!--grid js -->
+<script src="~/assets/js/grid-list.js"></script>
+
+<!-- Template js-->
+<script src="~/assets/js/script.js"></script>
+
+<!-- Customizer js-->
+<script src="~/assets/js/customizer.js"></script>
+
+
+
+<script>
+    new WOW().init();
+
+    // number js
+    function isNumber(evt) {
+        var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+        if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+            return false;
+
+        return true;
+    }
+    function maxLengthCheck(object)
+    {
+        if (object.value.length > object.maxLength)
+        object.value = object.value.slice(0, object.maxLength)
+    }
+
+    (function($) {
+        "use strict";
+        // colorpicker js
+        var color_picker3 = document.getElementById("ColorPicker3").value;
+        document.getElementById("ColorPicker3").onchange = function() {
+            color_picker3 = this.value;
+            document.documentElement.style.setProperty('--theme-default3', color_picker3);
+        };
+
+        var color_picker4 = document.getElementById("ColorPicker4").value;
+        document.getElementById("ColorPicker4").onchange = function() {
+            color_picker4 = this.value;
+            document.documentElement.style.setProperty('--theme-default4', color_picker4);
+        };
+    })(jQuery);
+
+    // show number
+    $(".agent-contact > li .label").click(function(){
+        $(this).parent().toggleClass("show");
+    });
+</script>
+

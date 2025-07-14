@@ -1,5 +1,9 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
+
+
+<!-- Mirrored from themes.pixelstrap.com/sheltos/main/single-property-8.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Jun 2025 09:46:42 GMT -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,25 +30,24 @@
     <!-- Template css -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/color1.css">
+
 </head>
+
+
 <body>
-    <!-- Loader start -->
+
+  @*@  <!-- Loader start -->
     <div class="loader-wrapper">
-        <div class="row loader-text">
+        <div class="row loader-img">
             <div class="col-12">
-                <img src="~/assets/images/loader/loader.gif" class="img-fluid" alt="">
-            </div>
-            <div class="col-12">
-                <div>
-                    <h3 class="mb-0">Please wait Real estate Template loading...</h3>
-                </div>
+                <img src="~/assets/images/loader/loader-2.gif" class="img-fluid" alt="">
             </div>
         </div>
-    </div>
+    </div>*@
     <!-- Loader end -->
     <!-- header start -->
     <header class="header-1 header-6">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="menu">
@@ -71,28 +74,28 @@
                                         <li class="dropdown">
                                             <a href="javascript:void(0)" class="nav-link menu-title">property</a>
                                             <ul class="nav-submenu menu-content">
-                                                <li><a asp-controller="Property" asp-action="Index">Apartment</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index">Mansion </a></li>
-                                                <li><a asp-controller="Property" asp-action="Index">Duplex</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index">Plots Of Land</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index">Factories</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index">Companies</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index">Lodges</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index">Hotels</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index">All</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Apartment">Apartment</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Duplex">Duplex</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Mansion">Mansion</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Land">Land</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Lodge">Lodge</a></li>
+                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Hotel">Hotel</a></li>
+
                                             </ul>
                                         </li>
                                         <li class="dropdown">
                                             <a href="javascript:void(0)" class="nav-link menu-title">Pages</a>
                                             <ul class="nav-submenu menu-content">
 
-                                                <li><a href="about-us.html">About Us </a></li>
-                                                <li><a href="terms-conditions.html">Terms&Conditions</a></li>
-                                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                                <li><a asp-controller="Pages" asp-action="AboutUs">About Us </a></li>
+                                                <li><a asp-controller="Pages" asp-action="Terms">Terms&Conditions</a></li>
+                                                <li><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a></li>
                                                 <li><a href="contact-2.html">Contact Us</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a href="user-profile.html" class="nav-link menu-title">User</a>
+                                            <a asp-action="Dashboard" asp-controller="User" class="nav-link menu-title">User</a>
 
                                         </li>
 
@@ -100,8 +103,8 @@
                                             <a href="javascript:void(0)" class="nav-link menu-title">agent</a>
                                             <ul class="nav-submenu menu-content">
 
-                                                <li><a href="agent-list.html">Agent List</a></li>
-                                                <li><a href="add-agent.html">Agent Registration</a></li>
+                                                <li><a asp-controller="Agent" asp-action="List">Agent List</a></li>
+                                                <li><a asp-controller="Agent" asp-action="CreateAgent">Agent Registration</a></li>
                                             </ul>
                                         </li>
 
@@ -122,41 +125,12 @@
                                         <a href="javascript:void(0)">
                                             <i data-feather="shopping-cart"></i>
                                         </a>
-                                        <ul class="nav-submenu">
-                                            <li>
-                                                <div class="media">
-                                                    <img src="~/assets/images/property/2.jpg" class="img-fluid" alt="">
-                                                    <div class="media-body">
-                                                        <a href="Propertydetails.html"><h5>Magnolia Ranch</h5></a>
-                                                        <span>$120.00*</span>
-                                                    </div>
-                                                </div>
-                                                <div class="close-circle">
-                                                    <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <img src="~/assets/images/property/3.jpg" class="img-fluid" alt="">
-                                                    <div class="media-body">
-                                                        <a href="Propertydetails.html"><h5>Magnolia Ranch</h5></a>
-                                                        <span>$140.00*</span>
-                                                    </div>
-                                                </div>
-                                                <div class="close-circle">
-                                                    <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="total">
-                                                    <h5>Subtotal :- <span class="float-end">$260.00</span></h5>
-                                                </div>
-                                            </li>
+                                        <ul> @await Component.InvokeAsync("ShoppingCartSummary")
                                         </ul>
                                     </li>
 
                                     <li class="dropdown">
-                                        <a href="login.html">
+                                        <a asp-action="Login" asp-controller="Account">
                                             <i data-feather="user"></i>
                                         </a>
                                     </li>
@@ -169,8 +143,9 @@
         </div>
     </header>
     <!--  header end -->
+    <!--  header end -->
     <div class="container-fluid p-0">
-        <main role="main" class="pb-3 col-12" style="width: 100%; height: auto; display: block;">
+        <main role="main" class="pb-3 col-12">
             @RenderBody()
         </main>
     </div>
@@ -311,43 +286,43 @@
     </div>
     <!-- customizer end -->
     <!-- latest jquery-->
-    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="~/assets/js/jquery-3.6.0.min.js"></script>
     
 
     <!-- popper js-->
-    <script src="../assets/js/popper.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
 
     <!-- Bootstrap js-->
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
 
     <!-- range slider js -->
-    <script src="../assets/js/jquery-ui.js"></script>
-    <script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
-    <script src="../assets/js/range-slider.js"></script>
+    <script src="~/assets/js/jquery-ui.js"></script>
+    <script src="~/assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="~/assets/js/range-slider.js"></script>
 
     <!-- feather icon js-->
-    <script src="../assets/js/feather-icon/feather.min.js"></script>
-    <script src="../assets/js/feather-icon/feather-icon.js"></script>
+    <script src="~/assets/js/feather-icon/feather.min.js"></script>
+    <script src="~/assets/js/feather-icon/feather-icon.js"></script>
 
     <!-- slick js -->
-    <script src="../assets/js/slick.js"></script>
-    <script src="../assets/js/slick-animation.min.js"></script>
-    <script src="../assets/js/custom-slick.js"></script>
+    <script src="~/assets/js/slick.js"></script>
+    <script src="~/assets/js/slick-animation.min.js"></script>
+    <script src="~/assets/js/custom-slick.js"></script>
 
     <!-- notify js -->
-    <script src="../assets/js/bootstrap-notify.min.js"></script>
+    <script src="~/assets/js/bootstrap-notify.min.js"></script>
 
     <!-- wow js-->
-    <script src="../assets/js/wow.min.js"></script>
+    <script src="~/assets/js/wow.min.js"></script>
 
     <!-- Template js-->
-    <script src="../assets/js/script.js"></script>
+    <script src="~/assets/js/script.js"></script>
 
     <!-- Customizer js-->
-    <script src="../assets/js/customizer.js"></script>
+    <script src="~/assets/js/customizer.js"></script>
 
     <!-- Color-picker js-->
-    <script src="../assets/js/color/layout3.js"></script>
+    <script src="~/assets/js/color/layout3.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

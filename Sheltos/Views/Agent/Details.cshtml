@@ -1,0 +1,220 @@
+﻿@using Sheltos.ViewModel
+@model AgentDetailsViewModel
+@{
+	
+}
+
+
+    <section class="breadcrumb-section p-0">
+        <img src="~/assets/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <div>
+                    <h2>Agent Profile</h2>
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Agent Profile</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb end -->
+    <!-- agent profile section start -->
+    <section class="agent-section property-section agent-profile-wrap">
+        <div class="container">
+            <div class="row ratio_55">
+                <div class="col-xl-11 col-lg-8 property-grid-2">
+                    <div class="our-agent theme-card">
+                        <div class="row">
+                            <div class="col-sm-6 ratio_landscape">
+                                <div class="agent-image">
+                                    <img src="@Model.Image" class="img-fluid bg-img" alt="">
+                                    <span class="label label-shadow">@Model.PropertyCount Properties</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="our-agent-details">
+                                    <h3 class="f-w-600">@Model.FullName</h3>
+                                    <h6>Real estate Property Agent</h6>
+                                    <ul>
+                                        <li>
+                                            <div class="media">
+                                                <div class="icons-square">
+                                                    <i data-feather="map-pin"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6>@Model.Address</h6>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="media">
+                                                <div class="icons-square">
+                                                    <i data-feather="phone-call"></i>
+                                                </div>
+                                                <a href="tel:@Model.PhoneNumber" class="d-flex align-items-center" style="color: black;">
+                                                    @Model.PhoneNumber
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="media">
+                                                <div class="icons-square">
+                                                    <i data-feather="mail"></i>
+                                                </div>
+                                                <a class="d-flex align-items-center mb-2" href="https://mail.google.com/mail/?view=cm&fs=1&to=@Model.Email" target="_blank" style="color: black;">
+                                                    @Model.Email
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="with-link">
+                                            <div class="media">
+                                                <div class="icons-square">
+                                                    <img src="https://img.icons8.com/color/48/whatsapp--v1.png" style="width:30px;">
+
+                                                </div>
+                                                <a class="d-flex align-items-center mb-2 whatsapp-link" href="https://wa.me/@Model.PhoneNumber" style="color: black;" target="_blank">@Model.PhoneNumber</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <ul class="agent-social">
+                                    <li><a href="https://www.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/" class="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="agent-property">
+                        <div class="filter-panel">
+                            <div class="top-panel">
+                                <div>
+                                    <h3>Properties Listing</h3>
+                                    
+                                </div>
+                                <ul class="grid-list-filter">
+                                
+                                    <li class="grid-btn active">
+                                        <a href="javascript:void(0)">
+                                            <i data-feather="grid"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-btn">
+                                        <a href="javascript:void(0)">
+                                            <i data-feather="list"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="property-2 row column-sm zoom-gallery property-label property-grid">
+                            @foreach (var item in Model.Properties)
+                            {
+                                <div class="col-md-6 wow fadeInUp">
+                                    <div class="property-box">
+                                        <div class="property-image">
+                                            <div class="property-slider">
+                                                @foreach (var image in item.GalleryImages)
+                                                {
+                                                    <a href="javascript:void(0)">
+                                                        <img src="@image" class="bg-img" alt="Propertyimage">
+                                                    </a>
+
+                                                }
+                                            </div>
+                                            <div class="labels-left">
+                                                <div>
+                                                    <span class="label label-shadow">@item.PropertyStatus</span>
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="overlay-property-box">
+
+                                                <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+                                                    <i data-feather="heart"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="property-details">
+                                            <span class="font-roboto">@($"{item.City}, {item.State}, {item.Country}")</span>
+                                            <a href="Property.html">
+                                                <h3>@item.Title</h3>
+                                            </a>
+                                            <h6>@item.Price.ToString("C")</h6>
+                                            <p class="font-roboto">
+                                                @item.Description
+                                            </p>
+                                            <ul>
+                                                <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : @item.Beds</li>
+                                                <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : @item.Bathrooms</li>
+                                                <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : @item.PropertySize</li>
+                                            </ul>
+                                            <div class="property-btn d-flex">
+                                                <span>@item.DateTime</span>
+                                                <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- footer start -->
+  
+    <!-- customizer end -->
+    <!-- latest jquery-->
+    <script src="~/assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- popper js-->
+    <script src="~/assets/js/popper.min.js"></script>
+
+    <!-- magnific js -->
+    <script src="~/assets/js/jquery.magnific-popup.js"></script>
+    <script src="../assets/js/zoom-gallery.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="~/assets/js/feather-icon/feather.min.js"></script>
+    <script src="~/assets/js/feather-icon/feather-icon.js"></script>
+
+    <!-- range slider js -->
+    <script src="~/assets/js/jquery-ui.js"></script>
+    <script src="~/assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="~/assets/js/range-slider.js"></script>
+
+    <!-- slick js -->
+    <script src="~/assets/js/slick.js"></script>
+    <script src="~/assets/js/slick-animation.min.js"></script>
+    <script src="~/assets/js/custom-slick.js"></script>
+
+    <!--grid js -->
+    <script src="~/assets/js/grid-list.js"></script>
+
+    <!-- Template js-->
+    <script src="~/assets/js/script.js"></script>
+
+    <!-- Customizer js-->
+    <script src="~/assets/js/customizer.js"></script>
+
+    <!-- Color-picker js-->
+    <script src="~/assets/js/color/single-property.js"></script>
+
+
+
+
+<!-- Mirrored from themes.pixelstrap.com/sheltos/main/agent-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Jun 2025 09:47:00 GMT -->

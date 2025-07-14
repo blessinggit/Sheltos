@@ -12,6 +12,6 @@ namespace Sheltos.Models
 
         public List<Property>? Properties { get; set; }
 
-        public List<Agent> Agents { get; set; }
+       
     }
 }

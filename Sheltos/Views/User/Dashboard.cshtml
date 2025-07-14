@@ -1,0 +1,151 @@
+﻿@model ApplicationUser
+@{
+	Layout = "_Layout2";
+}
+<!-- breadcrumb start -->
+<section class="breadcrumb-section p-0">
+    <img src="~/assets/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <div>
+                <h2>Dashboard</h2>
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">My profile</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb end -->
+<!-- user dashboard section start -->
+<section class="user-dashboard small-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="sidebar-user sticky-cls">
+                    <div class="user-profile">
+                        <div class="media">
+                            <div class="change-pic">
+                                <img src="@Model.ProfileImageUrl" class="img-fluid update_img" alt="">
+                                <div class="change-hover">
+                                    <button type="button" class="btn"><i data-feather="camera"></i></button>
+                                    <input class="updateimg" type="file" name="img" onchange="readURL(this,0)">
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h6>WELCOME!</h6>
+                                <p>@Model.FullName</p>
+                               
+                            </div>
+                           
+                        </div>
+                        <div class="connected-social">
+                            <ul class="agent-social">
+                                <li><a href="https://www.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="https://account.google.com/" class="google"><i class="fab fa-google"></i></a></li>
+                                <li><a href="https://www.linkedin.com/" class="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dashboard-list">
+                        <ul class="nav nav-tabs right-line-tab">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="user-profile.html">My profile</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="user-favourites.html">Favourites</a></li>
+                            <li class="nav-item"><a class="nav-link " href="user-payment.html">Cards & payment</a></li>
+                            <li class="nav-item"><a class="nav-link" href="user-privacy.html">Privacy</a></li>
+                            <li class="nav-item"><a asp-action="Logout" asp-controller="Account" class="nav-link">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="dashboard-content">
+                    <div class="my-profile" id="profile">
+                        <div class="profile-info">
+                            <div class="common-card">
+                                <div class="user-name media">
+                                    <div class="media-body">
+                                        <h4>@Model.FullName </h4>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <span data-bs-toggle="modal" data-bs-target="#edit-profile" class="label label-light label-flat color-4">Edit</span>
+                                </div>
+
+                            </div>
+                            <div class="common-card">
+                                <div class="row">
+                                    <div class="col-xxl-6 col-xl-7">
+                                        <div class="information-detail">
+                                            <div class="common-header">
+                                                <h5>About</h5>
+                                            </div>
+                                            <div class="information">
+                                                <ul>
+                                                    <li>
+                                                        <span>Gender :</span>
+                                                        <p>@Model.Gender</p>
+                                                    </li>
+                                                    <li>
+                                                        <span>Birthday :</span>
+                                                        <p>@Model.DateOfBirth</p>
+                                                    </li>
+                                                    <li>
+                                                        <span>Phone number :</span>
+                                                        <a href="javascript:void(0)">
+                                                            @Model.PhoneNumber
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <span>Address :</span>
+                                                        <p>@Model.Address</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="information-detail">
+                                            <div class="common-header">
+                                                <h5>Login Details</h5>
+                                            </div>
+                                            <div class="information">
+                                                <ul>
+                                                    <li>
+                                                        <span>Email :</span>
+                                                        <a href="javascript:void(0)">@Model.Email</a>
+                                                        <span data-bs-toggle="modal" data-bs-target="#edit-address" class="label label-light label-flat color-4">Edit</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Password :</span>
+                                                        <a href="javascript:void(0)"></a>
+                                                        <span data-bs-toggle="modal" data-bs-target="#edit-password" class="label label-light label-flat color-4">Edit</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-5 offset-xxl-1 col-xl-5 offset-xl-0">
+                                        <div class="about-img d-xl-block d-none">
+                                            <img src="~/assets/images/inner-pages/2.png" class="img-fluid" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- user dashboard section end -->
