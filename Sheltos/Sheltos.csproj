@@ -14,11 +14,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.17" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.4.0" />
+    <PackageReference Include="ServiceStack.Text" Version="8.8.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\User\" />
     <Folder Include="wwwroot\agents\" />
+    <Folder Include="wwwroot\properties\" />
     <Folder Include="wwwroot\users\" />
   </ItemGroup>
 

@@ -76,6 +76,7 @@
                                         <li class="dropdown">
                                             <a href="javascript:void(0)" class="nav-link menu-title">property</a>
                                             <ul class="nav-submenu menu-content">
+                                                <li><a asp-controller="Property" asp-action="Index">All</a></li>
                                                 <li><a asp-controller="Property" asp-action="Index" asp-route-type="Apartment">Apartment</a></li>
                                                 <li><a asp-controller="Property" asp-action="Index" asp-route-type="Duplex">Duplex</a></li>
                                                 <li><a asp-controller="Property" asp-action="Index" asp-route-type="Mansion">Mansion</a></li>
@@ -90,12 +91,12 @@
 
                                                 <li><a asp-controller="Pages" asp-action="AboutUs">About Us </a></li>
                                                 <li><a asp-controller="Pages" asp-action="Terms">Terms&Conditions</a></li>
-                                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                                <li><a href="contact-2.html">Contact Us</a></li>
+                                                <li><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a></li>
+                                                <li><a asp-controller="Pages" asp-action="ContactUs">Contact Us</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a href="user-profile.html" class="nav-link menu-title">User</a>
+                                            <a asp-action="Dashboard" asp-controller="User" class="nav-link menu-title">User</a>
 
                                         </li>
 
@@ -117,7 +118,7 @@
                             <li class="right-menu color-6">
                                 <ul class="nav-menu">
                                     <li class="dropdown">
-                                        <a href="user-favourites.html">
+                                        <a asp-action="MyFavourites" asp-controller="Favourite">
                                             <i data-feather="heart"></i>
                                         </a>
                                     </li>
@@ -125,36 +126,8 @@
                                         <a href="javascript:void(0)">
                                             <i data-feather="shopping-cart"></i>
                                         </a>
-                                        <ul class="nav-submenu">
-                                            <li>
-                                                <div class="media">
-                                                    <img src="../assets/images/property/2.jpg" class="img-fluid" alt="">
-                                                    <div class="media-body">
-                                                        <a href="Propertydetails.html"><h5>Magnolia Ranch</h5></a>
-                                                        <span>$120.00*</span>
-                                                    </div>
-                                                </div>
-                                                <div class="close-circle">
-                                                    <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <img src="../assets/images/property/3.jpg" class="img-fluid" alt="">
-                                                    <div class="media-body">
-                                                        <a href="Propertydetails.html"><h5>Magnolia Ranch</h5></a>
-                                                        <span>$140.00*</span>
-                                                    </div>
-                                                </div>
-                                                <div class="close-circle">
-                                                    <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="total">
-                                                    <h5>Subtotal :- <span class="float-end">$260.00</span></h5>
-                                                </div>
-                                            </li>
+                                        <ul>
+                                            @await Component.InvokeAsync("ShoppingCartSummary")
                                         </ul>
                                     </li>
 
@@ -192,7 +165,7 @@
                             </h5>
                             <div class="footer-content">
                                 <a href="https://themes.pixelstrap.com/sheltos/index.html">
-                                    <img src="../assets/images/logo/6.png" alt="" class="img-fluid">
+                                    <img src="~/assets/images/logo/6.png" alt="" class="img-fluid">
                                 </a>
                                 <p>This home provides entertaining spaces with a kitchen opening...</p>
                                 <div class="footer-contact">

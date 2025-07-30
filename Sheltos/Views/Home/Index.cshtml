@@ -88,11 +88,12 @@
                                                 <span class="label label-shadow">@item.PropertyStatus</span>
                                             </div>
                                         </div>
-
+                                          
                                         <div class="overlay-property-box">
 
-                                            <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
-                                                <i data-feather="heart"></i>
+                                            <a asp-action="Add" asp-controller="Favourite" asp-route-Propertyid="@item.Id" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+                                               
+                                                     <i data-feather="heart"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -156,8 +157,8 @@
                                     </div>
                                     
                                     <div class="overlay-property-box">
-                                        
-                                        <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+
+                                        <a asp-action="Add" asp-controller="Favourite" asp-route-Propertyid="@item.Id" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
                                             <i data-feather="heart"></i>
                                         </a>
                                     </div>
@@ -177,10 +178,9 @@
                                     </ul>
                                     <h5>@item.DateTime</h5>
                                     <div class="property-btn d-flex">
-                                       
+                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
                                         <a class="btn btn-secondary" asp-controller="ShoppingCart" asp-route-id="@item.Id" asp-action="AddToShoppingCart">Add To Cart</a>
 
-                                        <button type="button" onclick="document.location='Propertydetails.html'" class="btn btn-dashed btn-pill color-6">Details</button>
                                     </div>
                                 </div>
                             </div>

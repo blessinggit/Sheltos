@@ -6,5 +6,6 @@
         public List<PropertyViewModel> LatestForSale { get; set; }
         public List<ShoppingCartItemViewModel> ShoppingCartItems { get; set; }
         public double TotalPrice { get; set; }
+        
     }
 }

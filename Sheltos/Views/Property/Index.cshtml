@@ -1,5 +1,5 @@
-﻿@using Sheltos.ViewModel
-@model IEnumerable<PropertyViewModel>
+﻿@using Sheltos.ViewModel.Property
+@model PropertyindexViewModel
 @{
     Layout = "_Layout2";
 }
@@ -28,6 +28,7 @@
                             </ul>
                         </div>
                     </div>
+                    <form asp-action="Search" method="get" asp-controller="Property">
                     <div class="left-sidebar filter-bottom-content">
                         <h6 class="d-lg-none d-block text-end">
                             <a href="javascript:void(0)"
@@ -35,113 +36,35 @@
                         </h6>
                         <div class="row">
                             <div class="col-lg-4">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown">
-                                        <span>
-                                            Property
-                                            Status
-                                        </span> <i class="fas fa-angle-down"></i>
-                                    </span>
-                                    <div class="dropdown-menu text-start">
-                                        <a class="dropdown-item" href="javascript:void(0)">Property Status</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">For Rent</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">For Sale</a>
-                                    </div>
+                                <div class="form-group">
+                                    <label asp-for="PropertyStatus">Property Status</label>
+                                    <select asp-for="PropertyStatus" class="form-control">
+                                        <option value="">Select Status</option>
+                                        <option value="Rent">For Rent</option>
+                                        <option value="Sale">For Sale</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown">
-                                        <span>
-                                            Property
-                                            Type
-                                        </span> <i class="fas fa-angle-down"></i>
-                                    </span>
-                                    <div class="dropdown-menu text-start">
-                                        <a class="dropdown-item" href="javascript:void(0)">Property Type</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Apartment</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Family House</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Cottage</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Condominium</a>
-                                    </div>
-                                </div>
+                                <label asp-for="PropertyStatus">Location</label>
+                                <input type="text" class="form-control" asp-for="State" placeholder="Enter State (e.g. Enugu)" />
                             </div>
-                            <div class="col-lg-4">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown">
-                                        <span>
-                                            Property
-                                            Location
-                                        </span> <i class="fas fa-angle-down"></i>
-                                    </span>
-                                    <div class="dropdown-menu text-start">
-                                        <a class="dropdown-item" href="javascript:void(0)">Property Location</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Austria</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Brazil</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">New york</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">USA</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown">
-                                        <span>
-                                            Max
-                                            Rooms
-                                        </span> <i class="fas fa-angle-down"></i>
-                                    </span>
-                                    <div class="dropdown-menu text-start">
-                                        <a class="dropdown-item" href="javascript:void(0)">Max Rooms</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">1</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">5</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">6</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown">
-                                        <span>Bed</span> <i class="fas fa-angle-down"></i>
-                                    </span>
-                                    <div class="dropdown-menu text-start">
-                                        <a class="dropdown-item" href="javascript:void(0)">Bed</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">1</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown">
-                                        <span>Bath</span> <i class="fas fa-angle-down"></i>
-                                    </span>
-                                    <div class="dropdown-menu text-start">
-                                        <a class="dropdown-item" href="javascript:void(0)">Bath</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">1</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                           
+                           
                             <div class="col-12 text-end">
-                                <a href="javascript:void(0)" class="mt-3 btn btn-gradient color-2 btn-pill">Search Property</a>
+                                <button type="submit" class="mt-3 btn btn-gradient color-2 btn-pill">Search Property</button>
                             </div>
                         </div>
                     </div>
+                    </form>
                     <div class="property-section p-t-40">
 
 
                         <div class="row ratio_65">
                             <div class="col-12 property-grid-2">
                                 <div class="property-2 row column-sm zoom-gallery property-label property-grid">
-                                    @foreach (var item in Model)
+                                    @foreach (var item in Model.PropertyViewModels)
                                     {
                                         <div class="col-md-6">
                                             <div class="property-box">
@@ -163,9 +86,13 @@
                                                         </div>
 
                                                         <div class="overlay-property-box">
-                                                            <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
-                                                                <i data-feather="heart"></i>
-                                                            </a>
+                                                                <a asp-action="Add" asp-controller="Favourite" asp-route-Propertyid="@item.Id" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+                                                                    
+                                                                        <i data-feather="heart"></i>
+                                                                   
+
+                                                                </a>
+                                                           
                                                         </div>
                                                 </div>
                                                 <div class="property-details">
@@ -180,9 +107,10 @@
                                                         <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : @item.Bathrooms</li>
                                                         <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : @item.PropertySize</li>
                                                     </ul>
+                                                    <h5>@item.DateTime</h5>
                                                     <div class="property-btn d-flex">
-                                                        <span>@item.DateTime</span>
-                                                        <a  asp-controller="Property" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                                                        <a class="btn btn-secondary" asp-controller="ShoppingCart" asp-route-id="@item.Id" asp-action="AddToShoppingCart">Add To Cart</a>
                                                     </div>
                                                 </div>
                                             </div>

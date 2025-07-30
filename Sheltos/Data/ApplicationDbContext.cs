@@ -19,6 +19,15 @@ namespace Sheltos.Data
         public DbSet<Feature> Features { get; set; }
         public DbSet<ShoppingCartItems> ShoppingCartItems { get; set; }
         public DbSet<AgentApplication> AgentApplications { get; set; }
+        public DbSet<Favourite> Favourites { get; set; }
+        public DbSet<Card> Cards { get; set; }
+        public DbSet<ContactUs> ContactUs { get; set; }
+        public DbSet<PropertyRequest> PropertyRequests { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<PendingAgent> PendingAgents { get; set; }
+        public DbSet<Checkout> Checkouts { get; set; }
+        public DbSet<CheckoutItems> CheckoutItems { get; set; }
+        public DbSet<ChatMessage> ChatMessages { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -146,6 +155,17 @@ namespace Sheltos.Data
                 new PropertyFeature { PropertyId = 3, FeatureId = 2 },
                 new PropertyFeature { PropertyId = 3, FeatureId = 4 }
             );
+           modelBuilder.Entity<ChatMessage>()
+           .HasOne(cm => cm.Sender)
+           .WithMany(u => u.SentMessages)
+           .HasForeignKey(cm => cm.SenderId)
+           .OnDelete(DeleteBehavior.Restrict);
+
+           modelBuilder.Entity<ChatMessage>()
+            .HasOne(cm => cm.Receiver)
+            .WithMany(u => u.ReceivedMessages)
+            .HasForeignKey(cm => cm.ReceiverId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         }
 

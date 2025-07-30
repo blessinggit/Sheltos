@@ -1,0 +1,164 @@
+﻿@using Sheltos.ViewModel
+@using System.Web
+@model ContactUsViewModel
+@{
+}
+ <!-- breadcrumb start -->
+    <section class="breadcrumb-section p-0">
+        <img src="../assets/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <div>
+                    <h2>Contact us</h2>
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Contact us</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb end -->
+
+    <!-- Get in touch section start -->
+    <section class="small-section contact-2">
+        <div class="container">
+            <div class="row gx-3">
+                <div class="col-xl-6 col-lg-5">
+                    <div class="log-in px-xxl-5 px-lg-4">
+                        <div class="mb-4 text-start">
+                            <h2>Let's Get In Touch</h2>
+                        </div>
+                        <form class="row gx-3" method="post" asp-action="ContactUs" asp-controller="Pages" >
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group col-md-12">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i data-feather="user"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" asp-for="@Model.Name" placeholder="Enter your name" required="">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i data-feather="phone"></i>
+                                        </div>
+                                    </div>
+                                    <input asp-for="@Model.PhoneNumber"
+                                            placeholder="phone number"
+                                            class="form-control" 
+                                            id="tbNumbers" 
+                                            oninput="maxLengthCheck(this)"
+                                            type = "tel"
+                                            onkeypress="javascript:return isNumber(event)"
+                                            maxlength = "11"
+                                            required="" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i data-feather="mail"></i>
+                                        </div>
+                                    </div>
+                                    <input type="email" class="form-control" asp-for="@Model.Email" placeholder="email address" required="">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" asp-for="@Model.Subject" rows="3">Write here something
+                                </textarea>
+                            </div>
+                            <div class="submit-btn with-captcha">
+                                <div class="captcha">
+                                    <div class="spinner">
+                                        <label>
+                                            <input type="checkbox" onclick="$(this).attr('disabled','disabled');">
+                                            <span class="checkmark"><span>&nbsp;</span></span>
+                                        </label>
+                                    </div>
+                                    <div class="text">
+                                        I'm not a robot
+                                    </div>
+                                    <div class="logo">
+                                        <img src="../assets/images/inner-pages/recaptcha.png" alt="" />
+                                        <p>reCAPTCHA</p>
+                                        <small>Privacy - Terms</small>
+                                    </div>
+                                </div>
+                                <div>
+                                </div>
+                                <button class="btn btn-gradient color-2 btn-flat" type="submit">Send Your Message</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-7 contact_section contact_wrap_2">
+                    <div class="row contact-detail theme-card">
+                        <div class="col-lg-12 p-0">
+                            <div class="contact-content">
+                                <h2>Welcome to sheltos !!</h2>
+                                <p class="font-roboto">Connected residences might be owned by a single entity and leased out, 
+                                    or owned separately with an agreement covering the relationship between units and common areas and concerns.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 p-0">
+                            <div class="contact_wrap shadow-none text-start ps-0">
+                                <i data-feather="map-pin"></i>
+                                <h4>Where ?</h4>
+                                <p class="font-roboto">549 Sulphur Springs Road <br>
+                                    Downers Grove, IL 60515 <br>
+                                    Lagos state <br>
+                                    +234-8993-7384-908
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 p-0">
+                            <div class="contact_wrap shadow-none text-start ps-0">
+                                <i data-feather="mail"></i>
+                                <h4>Online service</h4>
+                                <ul>
+                                    <li>Inquiries: nwekeblessing06@gmail.com</li>
+                                    <li>Support: blessing1@gmail.com</li>
+                                    <li>www.test.com</li>
+                                    <li>+234-9052-6775-759</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+
+
+            </div>
+        </div>
+    </section>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '@Html.Raw(HttpUtility.JavaScriptStringEncode(TempData["SuccessMessage"].ToString()))',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    }
+}
+    <!-- Get in touch section end -->
+
+   
+    
+   

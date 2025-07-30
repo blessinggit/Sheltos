@@ -1,0 +1,33 @@
+﻿@model ApplicationUser
+@{
+}
+<form asp-action="ChangeImage" asp-controller="User" method="post" enctype="multipart/form-data">
+    <div class="user-profile">
+        <div class="media">
+            <div class="change-pic">
+                <img src="@Model.ProfileImageUrl" class="img-fluid update_img" alt="Profile">
+                <div class="change-hover">
+                    <button type="button" class="btn"><i data-feather="camera"></i></button>
+                    <input class="updateimg" type="file" name="ImageFile" onchange="this.form.submit();" />
+                    <div id="loading-spinner" style="display:none;">
+                        <small>Uploading image...</small>
+                    </div>
+                </div>
+            </div>
+            <div class="media-body">
+                <h6>WELCOME!</h6>
+                <p>@Model.FullName</p>
+
+            </div>
+
+        </div>
+        <div class="connected-social">
+            <ul class="agent-social">
+                <li><a href="https://www.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://twitter.com/" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="https://account.google.com/" class="google"><i class="fab fa-google"></i></a></li>
+                <li><a href="https://www.linkedin.com/" class="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</form>

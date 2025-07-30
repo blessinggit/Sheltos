@@ -11,7 +11,7 @@ namespace Sheltos.Models
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         public string Address { get; set; }
 
@@ -24,7 +24,7 @@ namespace Sheltos.Models
         public string? UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-        public ICollection<Property> Properties { get; set; }
+        public ICollection<Property>? Properties { get; set; }
 
     }
 }

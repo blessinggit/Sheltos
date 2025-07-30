@@ -1,0 +1,174 @@
+﻿@using Sheltos.ViewModel.User
+@model IEnumerable<FavouriteListViewModel>
+@{
+    Layout = "_Layout2";
+}
+<!-- breadcrumb start -->
+<section class="breadcrumb-section p-0">
+    <img src="../assets/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <div>
+                <h2>Dashboard</h2>
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Favourites</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb end -->
+<!-- user dashboard section start -->
+<section class="user-dashboard small-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="sidebar-user sticky-cls">
+                    @await Component.InvokeAsync("UserImage")
+                    <div class="dashboard-list">
+                        <ul class="nav nav-tabs right-line-tab">
+                            <li class="nav-item">
+                                <a class="nav-link " asp-action="Dashboard" asp-controller="User">My profile</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link active" asp-action="MyFavourites" asp-controller="Favourite">Favourites</a></li>
+                            <li class="nav-item"><a class="nav-link " asp-action="Index" asp-controller="Card">Cards & payment</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-action="Privacy" asp-controller="User">Privacy</a></li>
+                            <li class="nav-item"><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#logout" class="nav-link">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="dashboard-content">
+                    <div class="tab-listing" id="favourites">
+                        <div class="property-section">
+                            <div class="property-grid-2 ratio_63">
+                                <div class="filter-panel">
+                                    <div class="top-panel">
+                                        <div>
+                                            <h2>Favourites</h2>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                @if (Model != null && Model.Any())
+                                {
+                                <div class="property-2 row column-sm zoom-gallery property-label property-grid list-view">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="property-box liked-img">
+                                                <div class="property-image">
+                                                    <div class="property-slider">
+                                                        @foreach (var image in item.GalleryImages)
+                                                        {
+                                                            <a href="javascript:void(0)">
+                                                                <img src="@image" class="bg-img" alt="Propertyimage">
+                                                            </a>
+
+                                                        }
+                                                    </div>
+                                                    <div class="labels-left">
+                                                        <div>
+                                                            <span class="label label-shadow">@item.PropertyStatus</span>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <div class="overlay-property-box">
+
+                                                        <a asp-action="Remove" asp-controller="Favourite" asp-route-propertyid="@item.PropertyId" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+                                                            @if (item.IsFavourite)
+                                                            {
+                                                                <i data-feather="heart"></i>
+                                                            }
+
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="property-details">
+                                                    <span class="font-roboto">@item.Address</span>
+                                                    
+                                                    <a href="Propertydetails.html">
+                                                        <h3>@item.Title</h3>
+                                                    </a>
+                                                    <h6>$6558.00*</h6>
+                                                    <p class="font-roboto"></p>
+                                                    <ul>
+                                                        <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : @item.Beds</li>
+                                                        <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : @item.Bathrooms</li>
+                                                        <li><img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : @item.PropertySize</li>
+                                                    </ul>
+                                                    <div class="property-btn d-flex">
+                                                        <span>@item.DateTime</span>
+                                                        <button type="button" onclick="document.location='Propertydetails.html'" class="btn btn-dashed btn-pill color-2">Details</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                }
+                                else
+                                {
+                                    <div class="text-center">
+                                        <h3>No Favourites Found</h3>
+                                    </div>
+								}
+                                <nav class="theme-pagination">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="javascript:void(0)" aria-label="Previous">
+                                                <span aria-hidden="true">«</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="javascript:void(0)" aria-label="Next">
+                                                <span aria-hidden="true">»</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- user dashboard section end -->
+<!-- footer start -->
+
+<!-- log out modal start -->
+<div class="modal fade edit-profile-modal logout-modal" id="logout">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Logging out</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Are you sure ? you want to log out.</h6>
+                <p>Once you will be logged out and will be unable to log in back.</p>
+            </div>
+            <div class="modal-footer">
+                <a asp-action="Dashboard" asp-controller="User" class="btn btn-dashed color-2" data-bs-dismiss="modal">no</a>
+                <a asp-action="Logout" asp-controller="Account" class="btn btn-gradient color-2">yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- log out modal end -->
+<!-- customizer start -->

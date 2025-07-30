@@ -91,7 +91,7 @@
                                                 <li><a asp-controller="Pages" asp-action="AboutUs">About Us </a></li>
                                                 <li><a asp-controller="Pages" asp-action="Terms">Terms&Conditions</a></li>
                                                 <li><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a></li>
-                                                <li><a href="contact-2.html">Contact Us</a></li>
+                                                <li><a asp-controller="Pages" asp-action="ContactUs">Contact Us</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown">
@@ -117,7 +117,7 @@
                             <li class="right-menu color-6">
                                 <ul class="nav-menu">
                                     <li class="dropdown">
-                                        <a href="user-favourites.html">
+                                        <a asp-action="MyFavourites" asp-controller="Favourite">
                                             <i data-feather="heart"></i>
                                         </a>
                                     </li>
@@ -125,10 +125,13 @@
                                         <a href="javascript:void(0)">
                                             <i data-feather="shopping-cart"></i>
                                         </a>
-                                        <ul> @await Component.InvokeAsync("ShoppingCartSummary")
+                                       
+                                        <ul>
+                                            @await Component.InvokeAsync("ShoppingCartSummary")
                                         </ul>
+                                        
+                                       
                                     </li>
-
                                     <li class="dropdown">
                                         <a asp-action="Login" asp-controller="Account">
                                             <i data-feather="user"></i>
@@ -162,7 +165,7 @@
                             </h5>
                             <div class="footer-content">
                                 <a href="https://themes.pixelstrap.com/sheltos/index.html">
-                                    <img src="../assets/images/logo/6.png" alt="" class="img-fluid">
+                                    <img src="~/assets/images/logo/6.png" alt="" class="img-fluid">
                                 </a>
                                 <p>This home provides entertaining spaces with a kitchen opening...</p>
                                 <div class="footer-contact">

@@ -1,0 +1,257 @@
+﻿
+@{
+    Layout = "_Layout2";
+}
+<!-- breadcrumb start -->
+<section class="breadcrumb-section p-0">
+    <img src="../assets/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <div>
+                <h2>Dashboard</h2>
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Privacy</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb end -->
+<!-- user dashboard section start -->
+<section class="user-dashboard small-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="sidebar-user sticky-cls">
+                    @await Component.InvokeAsync("UserImage")
+                    <div class="dashboard-list">
+                        <ul class="nav nav-tabs right-line-tab">
+                            <li class="nav-item">
+                                <a class="nav-link " asp-action="Dashboard" asp-controller="User">My profile</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" asp-action="MyFavourites" asp-controller="Favourite">Favourites</a></li>
+                            <li class="nav-item"><a class="nav-link " asp-action="Index" asp-controller="Card">Cards & payment</a></li>
+                            <li class="nav-item "><a class="nav-link active" asp-action="Privacy" asp-controller="User">Privacy</a></li>
+                            <li class="nav-item"><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#logout" class="nav-link">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="dashboard-content">
+                    <div class="privacy-setting" id="privacy">
+                        <div class="common-card">
+                            <div class="common-header">
+                                <h5>Privacy</h5>
+                                <p class="font-roboto">Define your privacy settings</p>
+                            </div>
+                            <div class="privacy-content">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h6 class="font-roboto">Allows others to see my profile</h6>
+                                        <p class="font-roboto">all peoples will be able to see my profile</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="radio" name="radio1" value="option1" checked=""><span class="switch-state"></span>
+                                    </label>
+                                </div>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h6 class="font-roboto">who has save this profile only that people see my profile</h6>
+                                        <p class="font-roboto">all peoples will not be able to see my profile</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="radio" name="radio1" value="option1"><span class="switch-state"></span>
+                                    </label>
+                                </div>
+                                <button type="button" class="btn btn-gradient color-2 btn-pill">Save changes</button>
+                            </div>
+                            <div class="privacy-content">
+                                <h5>Account settings</h5>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h6 class="font-roboto">Deleting Your Account Will Permanently</h6>
+                                        <p class="font-roboto">Once your account is deleted, you will be logged out and will be unable to log in back.</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="radio" name="radio2" value="option2" checked=""><span class="switch-state"></span>
+                                    </label>
+                                </div>
+                                
+                                <a asp-action="DeleteAccount" asp-controller="Account" type="button" class="btn btn-gradient color-2 btn-pill">Delete my account</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- user dashboard section end -->
+<!-- footer start -->
+<footer class="footer-brown">
+    <div class="footer footer-custom-col">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-2 col-md-6 order-xl">
+                    <div class="footer-links footer-details">
+                        <h5 class="footer-title d-md-none">
+                            Contact us
+                            <span class="according-menu"><i class="fas fa-chevron-down"></i></span>
+                        </h5>
+                        <div class="footer-content">
+                            <a href="https://themes.pixelstrap.com/sheltos/index.html">
+                                <img src="../assets/images/logo/6.png" alt="" class="img-fluid">
+                            </a>
+                            <p>This home provides entertaining spaces with a kitchen opening...</p>
+                            <div class="footer-contact">
+                                <ul>
+                                    <li>
+                                        <i class="fas fa-map-marker-alt"></i>Iba-Housing Estate,ojo,Lagos.
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-phone-alt"></i>(+234) 905 - 724 - 7888
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-envelope"></i>nwekeblessing06@gmail.com
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-md-3">
+                    <div class="footer-links footer-left-space">
+                        <h5 class="footer-title">
+                            About
+                            <span class="according-menu"><i class="fas fa-chevron-down"></i></span>
+                        </h5>
+                        <ul class="footer-content">
+                            <li>
+                                <a href="about-us-2.html">About us</a>
+                            </li>
+
+                            <li>
+                                <a href="single-property-1.html">Property</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-creative-1.html">Page</a>
+                            </li>
+
+                            <li>
+                                <a href="contact-2.html">Agent</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="sub-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-6">
+                    <div class="footer-social sub-footer-link">
+                        <ul>
+                            <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="https://twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="https://accounts.google.com/"><i class="fab fa-google"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 text-end">
+                    <div class="copy-right">
+                        <p class="mb-0">Copyright 2025 Sheltos By <i data-feather="heart"></i> Blessing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer end -->
+<!-- tap to top start -->
+<div class="tap-top">
+    <div>
+        <i class="fas fa-arrow-up"></i>
+    </div>
+</div>
+<!-- tap to top end -->
+<!-- log out modal start -->
+<div class="modal fade edit-profile-modal logout-modal" id="logout">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Logging out</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Are you sure ? you want to log out.</h6>
+                <p>Once you will be logged out and will be unable to log in back.</p>
+            </div>
+            <div class="modal-footer">
+                <a asp-action="Dashboard" asp-controller="User" class="btn btn-dashed color-2" data-bs-dismiss="modal">no</a>
+                <a asp-action="Logout" asp-controller="Account" class="btn btn-gradient color-2">yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- log out modal end -->
+<!-- customizer start -->
+<div class="customizer-wrap">
+    <div class="customizer-links">
+        <i data-feather="settings"></i>
+    </div>
+    <div class="customizer-contain custom-scrollbar">
+        <div class="setting-back">
+            <i data-feather="x"></i>
+        </div>
+        <div class="layouts-settings">
+            <div class="customizer-title">
+                <h6 class="color-2">Layout type</h6>
+            </div>
+            <div class="option-setting">
+                <span>Light</span>
+                <label class="switch">
+                    <input type="checkbox" name="chk1" value="option" class="setting-check"><span class="switch-state"></span>
+                </label>
+                <span>Dark</span>
+            </div>
+        </div>
+        <div class="layouts-settings">
+            <div class="customizer-title">
+                <h6 class="color-2">Layout Direction</h6>
+            </div>
+            <div class="option-setting">
+                <span>LTR</span>
+                <label class="switch">
+                    <input type="checkbox" name="chk2" value="option" class="setting-check1"><span class="switch-state"></span>
+                </label>
+                <span>RTL</span>
+            </div>
+        </div>
+        <div class="layouts-settings">
+            <div class="customizer-title">
+                <h6 class="color-2">Unlimited Color</h6>
+            </div>
+            <div class="option-setting unlimited-color-layout">
+                <div class="form-group">
+                    <label for="ColorPicker3">color 3</label>
+                    <input id="ColorPicker3" type="color" value="#ff5c41" name="Default">
+                </div>
+                <div class="form-group">
+                    <label for="ColorPicker4">color 4</label>
+                    <input id="ColorPicker4" type="color" value="#ff8c41" name="Default">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- customizer end -->

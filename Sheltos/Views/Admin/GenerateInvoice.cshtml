@@ -1,0 +1,413 @@
+﻿@using Sheltos.ViewModel
+@model InvoiceViewModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from themes.pixelstrap.com/sheltos/back-end/agent-invoice.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Jun 2025 09:42:13 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sheltos - Invoice page">
+    <meta name="keywords" content="sheltos">
+    <meta name="author" content="sheltos">
+    <link rel="icon" href="~/assets1/images/favicon.png" type="image/x-icon" />
+    <title>Sheltos - Invoice page</title>
+
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
+
+    <!-- animate css -->
+    <link rel="stylesheet" type="text/css" href="~/assets1/css/animate.css">
+
+    <!-- Template css -->
+    <link rel="stylesheet" type="text/css" href="~/assets1/css/admin.css">
+
+</head>
+
+<body>
+
+    <!-- Loader start -->
+    <div class="loader-wrapper">
+        <div class="row loader-img">
+            <div class="col-12">
+                <img src="../assets/images/loader/loader-2.gif" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Loader end -->
+
+    <div class="page-wrapper">
+
+        <!-- page header start -->
+        <div class="page-main-header row">
+            <div id="sidebar-toggle" class="toggle-sidebar col-auto">
+                <i data-feather="chevrons-left"></i>
+            </div>
+            <div class="nav-right col p-0">
+                <ul class="header-menu">
+                    <div class="modal-dialog-centered">
+                        <h4>Invoice</h2>
+                    </div>
+
+                    <li class="profile-avatar onhover-dropdown">
+                        <div>
+                            <img src="~/assets1/images/avatar/3.jpg" class="img-fluid" alt="">
+                        </div>
+                        <ul class="profile-dropdown onhover-show-div">
+                            <li><a href="user-profile.html"><span>Account </span><i data-feather="user"></i></a></li>
+                            <li><a href="listing.html"><span>Listing</span><i data-feather="file-text"></i></a></li>
+                            <li><a href="login.html"><span>Log in</span><i data-feather="log-in"></i></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- page header end -->
+        <div class="page-body-wrapper">
+
+            <!-- page sidebar start -->
+            <div class="page-sidebar">
+                <div class="logo-wrap">
+                    <a href="index.html">
+                        <img src="~/assets1/images/logo/4.png" class="img-fluid for-light" alt="">
+                        <img src="~/assets1/images/logo/9.png" class="img-fluid for-dark" alt="">
+                    </a>
+                    <div class="back-btn d-lg-none d-inline-block">
+                        <i data-feather="chevrons-left"></i>
+                    </div>
+                </div>
+                <div class="main-sidebar">
+                    <div class="user-profile">
+                        <div class="media">
+                            <div class="change-pic">
+                                <img src="~/assets1/images/avatar/3.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="media-body">
+                                <h4>Admin</h4>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mainsidebar">
+                        <ul class="sidebar-menu custom-scrollbar">
+                            <li class="sidebar-item">
+                                <a asp-action="Dashboard" asp-controller="Admin">
+                                    <i data-feather="user-plus"></i>
+                                    DashBoard
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="javascript:void(0)" class="sidebar-link">
+                                    <i data-feather="grid"></i>
+                                    <span>Properties</span>
+                                </a>
+                                <ul class="nav-submenu menu-content">
+                                    <li>
+                                        <a asp-action="AddProperty" asp-controller="Admin">
+                                            <i data-feather="chevrons-right"></i>
+                                            Add Property
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a asp-action="List" asp-controller="Admin">
+                                            <i data-feather="chevrons-right"></i>
+                                            Property List
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="javascript:void(0)" class="sidebar-link">
+                                    <i data-feather="user-plus"></i>
+                                    <span>Agents</span>
+                                </a>
+                                <ul class="nav-submenu menu-content">
+
+                                    <li>
+                                        <a asp-action="AddAgent" asp-controller="Admin">
+                                            <i data-feather="chevrons-right"></i>
+                                            Add agent
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a asp-action="PendingAgentsList" asp-controller="Admin">
+                                            <i data-feather="chevrons-right"></i>
+                                            Pending agents
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a asp-action="AgentList" asp-controller="Admin">
+                                            <i data-feather="chevrons-right"></i>
+                                            All agents
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a asp-action="PaymentList" asp-controller="Admin" class="sidebar-link only-link">
+                                    <i data-feather="credit-card"></i>
+                                    <span>Payments</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a asp-action="MessageList" asp-controller="Admin" class="sidebar-link only-link">
+                                    <i data-feather="credit-card"></i>
+                                    <span>Messages</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="javascript:void(0)" class="sidebar-link">
+                                    <i data-feather="unlock"></i>
+                                    <span>Authentication</span>
+                                </a>
+                                <ul class="nav-submenu menu-content">
+                                    <li>
+                                        <a asp-action="Logout" asp-controller="Account">
+                                            <i data-feather="chevrons-right"></i>
+                                            Log Out
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="upgrade-box">
+                                    <img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/1.svg" class="img-fluid" alt="">
+                                    <h6>Need Help</h6>
+                                    <a href="https://pixelstrap.freshdesk.com/support/home" target="_blank" class="p-0 m-0">
+                                        <span class="d-block">Raise ticket at "support@pixelstrap.com"
+                                    </a>
+
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- page sidebar end -->
+
+            <div class="page-body">
+
+                <!-- Container-fluid start -->
+                <div class="container-lg">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="invoice">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="invoice-logo">
+                                                    <img src="~/assets1/images/logo/4.png" class="img-fluid for-light" alt="">
+                                                    <img src="~/assets1/images/logo/9.png" class="img-fluid for-dark" alt="">
+                                                    <span class="d-block mt-1">nwekeblessing06@gmail.com</span>
+                                                    <span class="d-block">09057247888</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="text-md-end">
+                                                    <h3>@Model.InvoiceNumber</h3>
+                                                    <p class="mb-0">Issued: >@Model.DateTime<br>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="address-invoice">
+                                            <div class="light-box row m-0">
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <h6 class="light-font">Invoice for</h6>
+                                                        <h5>@Model.FullName</h5>
+                                                        <p class="mb-0 light-font">@Model.Address</p>
+                                                        <p class="mb-0 light-font">Mobile no: @Model.Phonenumber</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <h6 class="light-font">Invoice from</h6>
+                                                        <h5>NwekeBlessing</h5>
+                                                        <p class="mb-0 light-font">Iba Housing Estate,ojo,Lagos</p>
+                                                        <p class="mb-0 light-font">Mobile no: 0905724788</p>
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="table-responsive invoice-table">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                       
+                                                        <th>Properties</th>
+                                                        <th>Amount</th>
+
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr></tr>
+                                                    @foreach (var item in Model.Properties)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.PropertyTitle</td>
+                                                            <td>@item.Price.ToString("C")</td>
+                                                        </tr>
+                                                       
+                                                    }
+                                                    <tr>
+                                                       <td></td>
+                                                       <td>Total Amount:</td>
+                                                       <td>@Model.TotalAmount.ToString("C")</td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row invoice-note">
+                                            <div class="col-md-4">
+                                                <div>
+                                                    <img src="~/assets1/images/signature/3.png" class="img-fluid" alt="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 text-center mt-3">
+                                               
+                                                <button onclick="myFunction()" type="button" class="btn btn-pill btn-gradient color-4">Print</button>
+                                                <a asp-controller="Admin" asp-action="PaymentList" type="button" class="btn btn-pill btn-dashed color-4 ms-2">cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-fluid end -->
+
+            </div>
+
+            <!-- footer start -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 footer-copyright">
+                            <p class="mb-0">Copyright 2022 © Sheltos All rights reserved.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="float-end mb-0">Developed with  <i class="fa fa-heart font-danger"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- footer end -->
+        </div>
+    </div>
+
+    <!-- tap to top start -->
+    <div class="tap-top">
+        <div>
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+    <!-- tap to top end -->
+    <!-- customizer start -->
+    <div class="customizer-wrap">
+        <div class="customizer-links">
+            <i data-feather="settings"></i>
+        </div>
+        <div class="customizer-contain custom-scrollbar">
+            <div class="setting-back">
+                <i data-feather="x"></i>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-4">Layout type</h6>
+                </div>
+                <div class="option-setting">
+                    <span>Light</span>
+                    <label class="switch">
+                        <input type="checkbox" name="chk1" value="option" class="setting-check"><span class="switch-state"></span>
+                    </label>
+                    <span>Dark</span>
+                </div>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-4">Layout Direction</h6>
+                </div>
+                <div class="option-setting">
+                    <span>LTR</span>
+                    <label class="switch">
+                        <input type="checkbox" name="chk2" value="option" class="setting-check1"><span class="switch-state"></span>
+                    </label>
+                    <span>RTL</span>
+                </div>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-4">Unlimited Color</h6>
+                </div>
+                <div class="option-setting unlimited-color-layout">
+                    <div class="form-group">
+                        <label for="ColorPicker6">color 6</label>
+                        <input id="ColorPicker6" type="color" value="#f35d43" name="Default">
+                    </div>
+                    <div class="form-group">
+                        <label for="ColorPicker7">color 7</label>
+                        <input id="ColorPicker7" type="color" value="#f34451" name="Default">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- customizer end -->
+    <!-- latest jquery-->
+    <script src="~/assets1/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="~/assets1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="~/assets1/js/feather-icon/feather.min.js"></script>
+    <script src="~/assets1/js/feather-icon/feather-icon.js"></script>
+
+    <!--print js -->
+    <script src="~/assets1/js/print.js"></script>
+
+    <!-- sidebar js -->
+    <script src="~/assets1/js/sidebar.js"></script>
+
+    <!-- Color-picker js-->
+    <script src="~/assets1/js/color/custom-colorpicker.js"></script>
+
+    <!--admin js -->
+    <script src="~/assets1/js/admin-script.js"></script>
+
+    <!-- Customizer js-->
+    <script src="~/assets1/js/customizer.js"></script>
+
+
+</body>
+
+
+<!-- Mirrored from themes.pixelstrap.com/sheltos/back-end/agent-invoice.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Jun 2025 09:42:13 GMT -->
+</html>

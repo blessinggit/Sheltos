@@ -3,6 +3,8 @@
 @{
 }
 <ul class="nav-submenu">
+    @if (User.Identity.IsAuthenticated)
+    {
     @foreach (var item in Model.ShoppingCartItems)
     {
         <li>
@@ -22,10 +24,16 @@
 
     }
     <li>
-        <div class="total">
-            <h5>Subtotal :- <span class="float-end">@Model.TotalPrice.ToString("C")</span></h5>
-        </div>
+            <div class="total">
+                <h5>Subtotal :- <span class="float-end">@Model.TotalPrice.ToString("C")</span></h5>
+            </div>
+			<a asp-controller="ShoppingCart"  asp-action="Checkout" class="btn btn-solid">Checkout</a>
     </li>
+    }
+    else
+    {
+        <p>Please log in to view your cart.</p>
+    }
 
 
 </ul>

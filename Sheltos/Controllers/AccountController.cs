@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Sheltos.Models;
+using Sheltos.Models.Repositories;
 using Sheltos.ViewModel;
 
 namespace Sheltos.Controllers
@@ -10,12 +11,14 @@ namespace Sheltos.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IWebHostEnvironment _environment;
+        private readonly IServiceProvider _serviceProvider;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IWebHostEnvironment environment)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IWebHostEnvironment environment, IServiceProvider serviceProvider)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _environment = environment;
+            _serviceProvider = serviceProvider;
         }
         public IActionResult Register()
         {
@@ -55,22 +58,31 @@ namespace Sheltos.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = await _userManager.FindByEmailAsync(loginVM.Email);
+                if (user == null)
+                {
+                   
+                    ModelState.AddModelError(string.Empty, $"The email '{loginVM.Email}' is not recognized.");
+                    return View(loginVM);
+                }
                 var result = await _signInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.RememberMe, lockoutOnFailure: false);
+              
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByEmailAsync(loginVM.Email);
                     var roles = await _userManager.GetRolesAsync(user);
-                    if (!user.ProfileCompleted)
-                    {
-                        return RedirectToAction("CompleteProfile", "Account");
-                    }
+                   
 
                     if (roles.Contains("Admin"))
                         return RedirectToAction("Dashboard", "Admin");
 
                     if (roles.Contains("Agent"))
                         return RedirectToAction("Dashboard", "Agent");
-                    return RedirectToAction("Index", "Home");
+                    if (!user.ProfileCompleted)
+                    {
+                        return RedirectToAction("CompleteProfile", "Account");
+                    }
+                    return RedirectToAction("Dashboard", "User");
+
 
                 }
                 ModelState.AddModelError("", "Invalid login attempt.");
@@ -80,6 +92,7 @@ namespace Sheltos.Controllers
         public IActionResult Logout()
         {
             _signInManager.SignOutAsync();
+            HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
         public IActionResult CompleteProfile()
@@ -121,6 +134,18 @@ namespace Sheltos.Controllers
                 ModelState.AddModelError("", error.Description);
             }
             return View(completeProfileVM);
+        }
+        public async Task<IActionResult> DeleteAccount()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var delete = await _userManager.DeleteAsync(user);
+            if (delete.Succeeded)
+            {
+                return RedirectToAction("Login");
+            }
+            return RedirectToAction("Index", "Home");
+
+
         }
         
 

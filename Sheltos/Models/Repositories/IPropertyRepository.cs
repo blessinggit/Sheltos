@@ -9,13 +9,26 @@
         Task<IEnumerable<Property>> GetLatestForSaleAsync(int Limit);
         Task<IEnumerable<Property>> GetLatestForRentAsync(int Limit);
         Task AddAsync(Property property);
+        Task AddRequestAsync(PropertyRequest request);
+        Task AddReview(Review review);
+        Task<Review> GetReviewByIdAsync(int reviewId);
+        Task DeleteReview(Review review);
+        Task<List<Review>> GetReviews(int id);
+
+        Task<List<Property>> SearchAsync(string state, string status);
+        Task AddProperty(Property property);
+        Task<List<string>> GetAllFeaturesAsync();
+        Task<List<Feature>> GetfeaturesByNamesAsync(List<string> featureNames);
+        Task UpdateProperty(Property property);
+        Task DeleteProperty(Property property);
+        Task<IEnumerable<Property>> AllPropertiesByAgent(int agentId);
         bool Save();
 
-        bool Update(Property property);
+       
         Task DeleteAsync(int id);
         IEnumerable<Property> AllPropertys();
         Task<IEnumerable<Property>> AllProperties();
 
-        Task<List<Property>> SearchAsync(string query);
+       
     }
 }

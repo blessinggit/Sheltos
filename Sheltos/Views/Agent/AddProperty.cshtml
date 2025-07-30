@@ -1,0 +1,463 @@
+﻿@using Sheltos.ViewModel
+@model PropertyViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from themes.pixelstrap.com/sheltos/back-end/add-property.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Jun 2025 09:42:07 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sheltos - Add property page">
+    <meta name="keywords" content="sheltos">
+    <meta name="author" content="sheltos">
+    <link rel="icon" href="~/assets1/images/favicon.png" type="image/x-icon" />
+    <title>Sheltos - Add property page</title>
+
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
+
+    <!-- animate css -->
+    <link rel="stylesheet" type="text/css" href="~/assets1/css/animate.css">
+
+    <!-- Template css -->
+    <link rel="stylesheet" type="text/css" href="~/assets1/css/admin.css">
+
+</head>
+
+<body>
+
+    <!-- Loader start -->
+    <div class="loader-wrapper">
+        <div class="row loader-img">
+            <div class="col-12">
+                <img src="~/assets1/images/loader/loader-2.gif" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Loader end -->
+
+    <div class="page-wrapper">
+
+        <!-- page header start -->
+        <div class="page-main-header row">
+            <div id="sidebar-toggle" class="toggle-sidebar col-auto">
+                <i data-feather="chevrons-left"></i>
+            </div>
+            <div class="nav-right col p-0">
+                <ul class="header-menu">
+                    <div class="modal-dialog-centered">
+                        <h4>Add Property</h2>
+                    </div>
+                    <li class="onhover-dropdown notification-box">
+                        <a href="javascript:void(0)">
+                            <i data-feather="bell"></i>
+                            <span class="label label-shadow label-pill notification-badge">1</span>
+                        </a>
+                        <div class="notification-dropdown onhover-show-div">
+                            <div class="dropdown-title">
+                                <h6>Notifications</h6>
+                                <a href="favourites.html">Show all</a>
+                            </div>
+                            <ul>
+
+
+                                <li>
+                                    <div class="media">
+                                        <div class="icon-notification bg-warning-light">
+                                            <i class="fas fa-comment-dots"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6>New Inquiry</h6>
+                                            <span>1 Days ago, Krowada 7</span>
+                                            <p class="mb-0">"is the villa still available?"</p>
+                                            <ul class="user-group">
+                                                <li>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="~/assets1/images/about/2.jpg" class="img-fluid" alt="">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="~/assets1/images/about/3.jpg" class="img-fluid" alt="">
+                                                    </a>
+                                                </li>
+                                                <li class="reply">
+                                                    <a href="javascript:void(0)">
+                                                        Reply
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="profile-avatar onhover-dropdown">
+                        <div>
+                            <img src="~/assets1/images/avatar/3.jpg" class="img-fluid" alt="">
+                        </div>
+                        <ul class="profile-dropdown onhover-show-div">
+                            <li><a href="user-profile.html"><span>Account </span><i data-feather="user"></i></a></li>
+                            <li><a href="listing.html"><span>Listing</span><i data-feather="file-text"></i></a></li>
+                            <li><a href="login.html"><span>Log in</span><i data-feather="log-in"></i></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- page header end -->
+        <div class="page-body-wrapper">
+
+            <!-- page sidebar start -->
+            <div class="page-sidebar">
+                <div class="logo-wrap">
+                    <a href="index.html">
+                        <img src="~/assets1/images/logo/4.png" class="img-fluid for-light" alt="">
+                        <img src="~/assets1/images/logo/9.png" class="img-fluid for-dark" alt="">
+                    </a>
+                    <div class="back-btn d-lg-none d-inline-block">
+                        <i data-feather="chevrons-left"></i>
+                    </div>
+                </div>
+                <div class="main-sidebar">
+                    <div class="user-profile">
+                        <div class="media">
+                            <div class="change-pic">
+                                <img src="~/assets1/images/avatar/3.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="media-body">
+                                <h4>Agent</h4>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mainsidebar">
+                        <ul class="sidebar-menu custom-scrollbar">
+                            <li class="sidebar-item">
+                                <a href="index.html" class="sidebar-link only-link">
+                                    <i data-feather="airplay"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="javascript:void(0)" class="sidebar-link">
+                                    <i data-feather="grid"></i>
+                                    <span>Properties</span>
+                                </a>
+                                <ul class="nav-submenu menu-content">
+                                    <li>
+                                        <a href="add-property.html">
+                                            <i data-feather="chevrons-right"></i>
+                                            add property
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="listing.html">
+                                            <i data-feather="chevrons-right"></i>
+                                            property list
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="Views.html" class="sidebar-link only-link">
+                                    <i data-feather="users"></i>
+                                    <span>Views</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="javascript:void(0)" class="sidebar-link">
+                                    <i data-feather="unlock"></i>
+                                    <span>Authentication</span>
+                                </a>
+                                <ul class="nav-submenu menu-content">
+                                    <li>
+                                        <a href="login.html">
+                                            <i data-feather="chevrons-right"></i>
+                                            Log in
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="signup.html">
+                                            <i data-feather="chevrons-right"></i>
+                                            sign up
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="upgrade-box">
+                                    <img src="https://themes.pixelstrap.com/sheltos/assets/images/svg/1.svg" class="img-fluid" alt="">
+                                    <h6>Need Help</h6>
+                                    <a href="https://pixelstrap.freshdesk.com/support/home" target="_blank" class="p-0 m-0">
+                                        <span class="d-block">Raise ticket at "support@pixelstrap.com"
+                                    </a>
+                                    </a>
+                                    <button type="button" onclick=" window.open('https://themeforest.net/user/pixelstrap/portfolio', '_blank');" class="btn btn-pill btn-gradient color-4 btn-sm mt-2 fw-bold">Buy Now</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- page sidebar end -->
+
+            <div class="page-body">
+
+
+
+                <!-- Container-fluid start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header pb-0">
+                                    <h5>Add Property Details</h5>
+                                </div>
+                                <div class="card-body admin-form">
+                                    <form class="row gx-3" asp-action="AddProperty" method="post" enctype="multipart/form-data">
+                                        <div class="form-group col-sm-4">
+                                            <label asp-for="@Model.Type">Max Rooms</label>
+                                            <select asp-for="@Model.Type" class="form-control">
+                                                <option value="">PropertyType..</option>
+                                                <option value="Mansion">Mansion</option>
+                                                <option value="Duplex">Duplex</option>
+                                                <option value="Apartment">Apartment </option>
+                                                <option value="Land">Land</option>
+                                                <option value="Hotel">Hotel </option>
+                                                <option value="Lodge">Lodge</option>
+
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label asp-for="@Model.PropertyStatus">Property Status</label>
+                                            <select asp-for="@Model.PropertyStatus" class="form-control">
+                                                <option value="">PropertyStatus..</option>
+                                                <option value="Rent">Rent</option>
+                                                <option value="Sale">Sale</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label asp-for="@Model.Title">Title</label>
+                                            <input type="text" asp-for="@Model.Title" class="form-control" placeholder="Property-Title">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label asp-for="@Model.Price">Property Price</label>
+                                            <input type="text" asp-for="@Model.Price" class="form-control" placeholder="$" required="">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label asp-for="@Model.Beds">Max Rooms</label>
+                                            <select asp-for="@Model.Beds" class="form-control">
+                                                <option value="">Beds..</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3 </option>
+                                                <option value="4">4</option>
+                                                <option value="5">5 </option>
+                                                <option value="6">6</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-sm-4">
+                                            <label asp-for="@Model.Bathrooms">Baths</label>
+                                            <select asp-for="@Model.Bathrooms" class="form-control">
+                                                <option value="">Bathrooms..</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3 </option>
+                                                <option value="4">4</option>
+                                                <option value="5">5 </option>
+                                                <option value="6">6</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label asp-for="@Model.PropertySize">Area</label>
+                                            <input type="text" asp-for="@Model.PropertySize" class="form-control" placeholder="85 sq ft">
+                                        </div>
+
+                                        <div class="form-group col-sm-12">
+                                            <label asp-for="@Model.Description">Description</label>
+                                            <textarea class="form-control" asp-for="@Model.Description" rows="4"></textarea>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label asp-for="@Model.City">City</label>
+                                            <input type="text" asp-for="@Model.City" class="form-control" placeholder="Address of your property">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label asp-for="@Model.State">State</label>
+                                            <input type="text" asp-for="@Model.State" class="form-control" placeholder="">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label>Any Country</label>
+                                            <select asp-for="@Model.Country" class="form-control">
+                                                <option value="">Country..</option>
+                                                <option value="America">America</option>
+                                                <option value="Nigeria">Nigeria</option>
+                                                <option value="Italy">Italy </option>
+                                                <option value="China">China</option>
+                                                <option value="France">France </option>
+
+                                            </select>
+                                        </div>
+                                        <div class="dropzone-admin">
+                                            <label asp-for="@Model.ImageFile">Media</label>
+                                            <input multiple asp-for="ImageFile" type="file" class="form-control custom-file-input" accept="image/*">
+
+                                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-sm-12 mb-0">
+                                            <label>Additional Features</label>
+                                            <div class="additional-checkbox">
+                                                @for (int i = 0; i < Model.AvailableFeatures.Count; i++)
+                                                {
+                                                    var feature = Model.AvailableFeatures[i];
+                                                    var id = $"feature_{i}";
+                                                    <label for="@id">
+                                                        <input type="checkbox"
+                                                               id="@id"
+                                                               name="Features"
+                                                               value="@feature"
+                                                               class="checkbox_animated color-4"
+                                                               @(Model.Features.Contains(feature) ? "checked" : "") />
+                                                        @feature
+                                                    </label>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="form-btn col-sm-12">
+                                            <button type="submit" class="btn btn-pill btn-gradient color-4">Submit</button>
+                                            <button type="button" class="btn btn-pill btn-dashed color-4">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-fluid end -->
+
+            </div>
+
+            <!-- footer start -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 footer-copyright">
+                            <p class="mb-0">Copyright 2022 © Sheltos All rights reserved.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="float-end mb-0">Developed with  <i class="fa fa-heart font-danger"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- footer end -->
+        </div>
+    </div>
+
+    <!-- tap to top start -->
+    <div class="tap-top">
+        <div>
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+    <!-- tap to top end -->
+    <!-- customizer start -->
+    <div class="customizer-wrap">
+        <div class="customizer-links">
+            <i data-feather="settings"></i>
+        </div>
+        <div class="customizer-contain custom-scrollbar">
+            <div class="setting-back">
+                <i data-feather="x"></i>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-4">Layout type</h6>
+                </div>
+                <div class="option-setting">
+                    <span>Light</span>
+                    <label class="switch">
+                        <input type="checkbox" name="chk1" value="option" class="setting-check"><span class="switch-state"></span>
+                    </label>
+                    <span>Dark</span>
+                </div>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-4">Layout Direction</h6>
+                </div>
+                <div class="option-setting">
+                    <span>LTR</span>
+                    <label class="switch">
+                        <input type="checkbox" name="chk2" value="option" class="setting-check1"><span class="switch-state"></span>
+                    </label>
+                    <span>RTL</span>
+                </div>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-4">Unlimited Color</h6>
+                </div>
+                <div class="option-setting unlimited-color-layout">
+                    <div class="form-group">
+                        <label for="ColorPicker6">color 6</label>
+                        <input id="ColorPicker6" type="color" value="#f35d43" name="Default">
+                    </div>
+                    <div class="form-group">
+                        <label for="ColorPicker7">color 7</label>
+                        <input id="ColorPicker7" type="color" value="#f34451" name="Default">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- customizer end -->
+    <!-- latest jquery-->
+    <script src="~/assets1/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="~/assets1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="~/assets1/js/feather-icon/feather.min.js"></script>
+    <script src="~/assets1/js/feather-icon/feather-icon.js"></script>
+
+    <!-- Dropzone js -->
+    <script src="~/assets1/js/dropzone/dropzone.js"></script>
+    <script src="~/assets1/js/dropzone/dropzone-script.js"></script>
+
+    <!-- Color-picker js-->
+    <script src="~/assets1/js/color/custom-colorpicker.js"></script>
+
+    <!-- sidebar js -->
+    <script src="~/assets1/js/sidebar.js"></script>
+
+    <!--admin js -->
+    <script src="~/assets1/js/admin-script.js"></script>
+
+    <!-- Customizer js-->
+    <script src="~/assets1/js/customizer.js"></script>
+
+</body>
+
+
+<!-- Mirrored from themes.pixelstrap.com/sheltos/back-end/add-property.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Jun 2025 09:42:08 GMT -->
+</html>

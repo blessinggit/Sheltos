@@ -28,9 +28,11 @@ namespace Sheltos.Models
 
         public PropertyStatus? PropertyStatus { get; set; } 
 
-        public int AgentId { get; set; }
+        public int? AgentId { get; set; }
       
         public Agent? Agent { get; set; }
+        public string? AdminId { get; set; }
+        public ApplicationUser? Admin { get; set; }  
 
         public ICollection<PropertyImage>? Gallery { get; set; } 
 

@@ -1,0 +1,433 @@
+﻿@using Sheltos.ViewModel.Card
+
+@model CardViewModel
+@{
+    Layout = "_Layout2";
+}
+<!-- breadcrumb start -->
+<section class="breadcrumb-section p-0">
+    <img src="../assets/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <div>
+                <h2>Dashboard</h2>
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Cards & payment</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb end -->
+<!-- user dashboard section start -->
+<section class="user-dashboard small-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="sidebar-user sticky-cls">
+                    @await Component.InvokeAsync("UserImage")
+                    <div class="dashboard-list">
+                        <ul class="nav nav-tabs right-line-tab">
+                            <li class="nav-item">
+                                <a class="nav-link " asp-action="Dashboard" asp-controller="User">My profile</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" asp-action="MyFavourites" asp-controller="Favourite">Favourites</a></li>
+                            <li class="nav-item"><a class="nav-link active" asp-action="Index" asp-controller="Card">Cards & payment</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-action="Privacy" asp-controller="User">Privacy</a></li>
+                            <li class="nav-item"><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#logout" class="nav-link">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="dashboard-content">
+                    <div class="payment-user" id="payment">
+                        <div class="common-card">
+                            <div class="common-header">
+                                <h5>Cards & payment</h5>
+                            </div>
+                            <div class="row card-payment">
+                                @foreach (var card in Model.Cards)
+                                {
+                                    <div class="col-xl-4 col-sm-6">
+                                        <div class="payment-card master">
+                                            <div class="card-details">
+                                                <div class="text-end">
+                                                    <h6>@card.CardType</h6>
+                                                </div>
+                                                <div class="card-number">
+                                                    <div>
+                                                        <img src="~/assets/images/icon/chip.png" class="img-fluid" alt="">
+                                                        <img src="~/assets/images/icon/wifi.png" class="img-fluid" alt="">
+                                                    </div>
+                                                    <h3>XXXX-XXXX-XXXX-@card.CardNumber</h3>
+                                                </div>
+                                                <div class="valid-detail">
+                                                    <div class="title">
+                                                        <span>valid</span>
+                                                        <span>thru</span>
+                                                    </div>
+                                                    <div class="date">
+                                                        <h3>@card.Expiry.ToString("MM/yy")</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="name-detail">
+                                                    <div class="name">
+                                                        <h5>@card.CardName</h5>
+                                                    </div>
+                                                    <div class="card-img">
+                                                        <img src="~/assets/images/icon/master.png" class="img-fluid" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="edit-card">
+                                                <a data-bs-toggle="modal" data-bs-target="#edit-card"
+                                                   class="edit-card-link"
+                                                   data-id="@card.Id"
+                                                   data-name="@card.CardName"
+                                                   data-number="@card.CardNumber"
+                                                   data-cvv="@card.CVV"
+                                                   data-type="@card.CardType"
+                                                   data-expiry="@card.Expiry.ToString("yyyy-MM")"
+                                                   data-default="@card.IsDefault"
+                                                    href="javascript:void(0)">edit
+                                                </a>
+                                                <a asp-action="Delete" asp-controller="Card" asp-route-id="@card.Id">delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                
+                                <div class="col-xl-4 col-sm-6">
+                                    <div class="payment-card add-card">
+                                        <div data-bs-toggle="modal" data-bs-target="#add-card" class="card-details">
+                                            <div>
+                                                <i class="fas fa-plus-circle"></i>
+                                                <h5>add new card</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- user dashboard section end -->
+<!-- footer start -->
+<footer class="footer-brown">
+    <div class="footer footer-custom-col">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-2 col-md-6 order-xl">
+                    <div class="footer-links footer-details">
+                        <h5 class="footer-title d-md-none">
+                            Contact us
+                            <span class="according-menu"><i class="fas fa-chevron-down"></i></span>
+                        </h5>
+                        <div class="footer-content">
+                            <a href="https://themes.pixelstrap.com/sheltos/index.html">
+                                <img src="../assets/images/logo/6.png" alt="" class="img-fluid">
+                            </a>
+                            <p>This home provides entertaining spaces with a kitchen opening...</p>
+                            <div class="footer-contact">
+                                <ul>
+                                    <li>
+                                        <i class="fas fa-map-marker-alt"></i>Iba-Housing Estate,ojo,Lagos.
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-phone-alt"></i>(+234) 905 - 724 - 7888
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-envelope"></i>nwekeblessing06@gmail.com
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-md-3">
+                    <div class="footer-links footer-left-space">
+                        <h5 class="footer-title">
+                            About
+                            <span class="according-menu"><i class="fas fa-chevron-down"></i></span>
+                        </h5>
+                        <ul class="footer-content">
+                            <li>
+                                <a href="about-us-2.html">About us</a>
+                            </li>
+
+                            <li>
+                                <a href="single-property-1.html">Property</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-creative-1.html">Page</a>
+                            </li>
+
+                            <li>
+                                <a href="contact-2.html">Agent</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="sub-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-6">
+                    <div class="footer-social sub-footer-link">
+                        <ul>
+                            <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="https://twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="https://accounts.google.com/"><i class="fab fa-google"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 text-end">
+                    <div class="copy-right">
+                        <p class="mb-0">Copyright 2025 Sheltos By <i data-feather="heart"></i> Blessing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer end -->
+<!-- tap to top start -->
+<div class="tap-top">
+    <div>
+        <i class="fas fa-arrow-up"></i>
+    </div>
+</div>
+<!-- tap to top end -->
+
+<!-- edit card modal start -->
+<div class="modal fade edit-profile-modal" id="edit-card">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">edit your card</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Edit" asp-controller="Card" method="post">
+                    <input type="hidden" id="EditCard_Id" asp-for="NewCard.Id" />
+                    <div class="form-group">
+                        <label for="EditCard_CardType">Card type</label>
+                        <select asp-for="@Model.NewCard.CardType" id="EditCard_CardType" class="form-control">
+                            <option value="Credit">credit card</option>
+                            <option value="Debit">debit card</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="EditCard_CardName">Card Name</label>
+                        <input type="text" class="form-control" asp-for="@Model.NewCard.CardName" id="EditCard_CardName">
+                    </div>
+                    <div class="form-group">
+                        <label for="EditCard_CardNumber">Card Number</label>
+                        <input type="text" class="form-control" id="EditCard_CardNumber" asp-for="@Model.NewCard.CardNumber" maxlength="4" placeholder="XXXX-XXXX-XXXX-3401">
+                    </div>
+                    <div class="row gx-3">
+                        <div class="form-group col-md-8">
+                            <label for="EditCard_Expiry">Expiry Date</label>
+                            <input type="month" class="form-control" id="EditCard_Expiry" asp-for="@Model.NewCard.Expiry" placeholder="12/24">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="EditCard_CVV">CVV</label>
+                            <input type="password" maxlength="3" class="form-control" id="EditCard_CVV" asp-for="@Model.NewCard.CVV" placeholder="&#9679;&#9679;&#9679;">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dashed color-2 btn-pill" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-gradient color-2 btn-pill" data-bs-dismiss="modal">update card</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- edit card modal start -->
+<!-- add new card modal start -->
+<div class="modal fade edit-profile-modal" id="add-card">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">add new card</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Add" asp-controller="Card" method="post">
+                    <div class="form-group">
+                        <label asp-for="@Model.NewCard.CardType">card type</label>
+                        <select asp-for="@Model.NewCard.CardType" class="form-control">
+                            <option selected>add new card...</option>
+                            <option value="Credit">credit card</option>
+                            <option value="Debit">debit card</option>
+                           
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.NewCard.CardName">CardName</label>
+                        <input type="text" class="form-control" asp-for="@Model.NewCard.CardName">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.NewCard.CardNumber">Card Number</label>
+                        <input type="text" class="form-control" maxlength="11" placeholder="Enter the last four digits" asp-for="@Model.NewCard.CardNumber">
+                    </div>
+                    <div class="row gx-3">
+                        <div class="form-group col-md-8">
+                            <label asp-for="@Model.NewCard.Expiry">Expiry Date</label>
+                            <input type="month" class="form-control" asp-for="@Model.NewCard.Expiry">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="@Model.NewCard.CVV">CVV</label>
+                            <input type="password" maxlength="3" class="form-control" asp-for="@Model.NewCard.CVV">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dashed color-2 btn-pill" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-gradient color-2 btn-pill" data-bs-dismiss="modal">Add card</button>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<!-- add new card modal start -->
+<!-- log out modal start -->
+<div class="modal fade edit-profile-modal logout-modal" id="logout">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Logging out</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Are you sure ? you want to log out.</h6>
+                <p>Once you will be logged out and will be unable to log in back.</p>
+            </div>
+            <div class="modal-footer">
+                <a asp-action="Dashboard" asp-controller="User" class="btn btn-dashed color-2" data-bs-dismiss="modal">no</a>
+                <a asp-action="Logout" asp-controller="Account" class="btn btn-gradient color-2">yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- log out modal end -->
+<!-- customizer start -->
+<div class="customizer-wrap">
+    <div class="customizer-links">
+        <i data-feather="settings"></i>
+    </div>
+    <div class="customizer-contain custom-scrollbar">
+        <div class="setting-back">
+            <i data-feather="x"></i>
+        </div>
+        <div class="layouts-settings">
+            <div class="customizer-title">
+                <h6 class="color-2">Layout type</h6>
+            </div>
+            <div class="option-setting">
+                <span>Light</span>
+                <label class="switch">
+                    <input type="checkbox" name="chk1" value="option" class="setting-check"><span class="switch-state"></span>
+                </label>
+                <span>Dark</span>
+            </div>
+        </div>
+        <div class="layouts-settings">
+            <div class="customizer-title">
+                <h6 class="color-2">Layout Direction</h6>
+            </div>
+            <div class="option-setting">
+                <span>LTR</span>
+                <label class="switch">
+                    <input type="checkbox" name="chk2" value="option" class="setting-check1"><span class="switch-state"></span>
+                </label>
+                <span>RTL</span>
+            </div>
+        </div>
+        <div class="layouts-settings">
+            <div class="customizer-title">
+                <h6 class="color-2">Unlimited Color</h6>
+            </div>
+            <div class="option-setting unlimited-color-layout">
+                <div class="form-group">
+                    <label for="ColorPicker3">color 3</label>
+                    <input id="ColorPicker3" type="color" value="#ff5c41" name="Default">
+                </div>
+                <div class="form-group">
+                    <label for="ColorPicker4">color 4</label>
+                    <input id="ColorPicker4" type="color" value="#ff8c41" name="Default">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- customizer end -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const editLinks = document.querySelectorAll('.edit-card-link');
+
+        editLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                document.getElementById('EditCard_Id').value = this.dataset.id;
+                document.getElementById('EditCard_CardName').value = this.dataset.name;
+                document.getElementById('EditCard_CardNumber').value = this.dataset.number;
+                document.getElementById('EditCard_CVV').value = this.dataset.cvv;
+                document.getElementById('EditCard_Expiry').value = this.dataset.expiry;
+            });
+        });
+    });
+</script>
+
+<!-- latest jquery-->
+<script src="../assets/js/jquery-3.6.0.min.js"></script>
+
+<!-- popper js-->
+<script src="../assets/js/popper.min.js"></script>
+
+<!-- feather icon js-->
+<script src="../assets/js/feather-icon/feather.min.js"></script>
+<script src="../assets/js/feather-icon/feather-icon.js"></script>
+
+<!-- slick js -->
+<script src="../assets/js/slick.js"></script>
+<script src="../assets/js/slick-animation.min.js"></script>
+<script src="../assets/js/custom-slick.js"></script>
+
+<!-- Bootstrap js-->
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+
+<!-- Template js-->
+<script src="../assets/js/script.js"></script>
+
+<!-- Customizer js-->
+<script src="../assets/js/customizer.js"></script>
+
+<!-- wow js-->
+<script src="../assets/js/wow.min.js"></script>
+
+<!-- Color-picker js-->
+<script src="../assets/js/color/template-color.js"></script>
+
