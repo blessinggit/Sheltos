@@ -144,6 +144,7 @@ namespace Sheltos.Controllers
             };
             return View(result);
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> RequestProperty(PropertyDetailViewModel requestVM)
         {

@@ -1,6 +1,7 @@
 ﻿@using Sheltos.ViewModel
 @model IEnumerable<AgentListViewModel>
 @{
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -55,12 +56,13 @@
             <div class="nav-right col p-0">
                 <ul class="header-menu">
                     <li>
-                        <div class="d-md-none mobile-search">
-                            <i data-feather="search"></i>
-                        </div>
-                        <div class="form-group search-form">
-                            <input type="text" class="form-control" placeholder="Search here...">
-                        </div>
+                        <form method="get" class="mb-3">
+                            <div class="input-group">
+                                <input type="text" name="searchTerm" class="form-control" placeholder="Search by Name..."
+                                       value="@ViewBag.SearchTerm" />
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+                        </form>
                     </li>
 
                     <div class="modal-dialog-centered">
@@ -72,9 +74,9 @@
                             <img src="~/assets1/images/avatar/3.jpg" class="img-fluid" alt="">
                         </div>
                         <ul class="profile-dropdown onhover-show-div">
-                            <li><a href="user-profile.html"><span>Account </span><i data-feather="user"></i></a></li>
-                            <li><a href="listing.html"><span>Listing</span><i data-feather="file-text"></i></a></li>
-                            <li><a href="login.html"><span>Log in</span><i data-feather="log-in"></i></a></li>
+                            <li><a asp-action="Dashboard" asp-controller="Admin"><span>Account </span><i data-feather="user"></i></a></li>
+
+                            <li><a asp-action="Login" asp-controller="Account"><span>Log Out</span><i data-feather="log-in"></i></a></li>
                         </ul>
                     </li>
                 </ul>

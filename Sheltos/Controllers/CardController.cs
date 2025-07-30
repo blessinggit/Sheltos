@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Sheltos.Models;
 using Sheltos.Models.Repositories;
@@ -6,6 +7,7 @@ using Sheltos.ViewModel.Card;
 
 namespace Sheltos.Controllers
 {
+    [Authorize]
     public class CardController : Controller
     {
         private readonly ICardRepository _cardRepository;

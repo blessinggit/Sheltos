@@ -152,10 +152,15 @@ namespace Sheltos.Controllers
             _logger.LogInformation("Property added successfully with title: {Title}", property.Title);
             return RedirectToAction("Dashboard", "Admin");
         }
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> List(string? searchTerm)
         {
             var properties = await _propertyRepository.AllProperties();
-
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                searchTerm = searchTerm.ToLower();
+                properties = properties.Where(p =>
+                    (!string.IsNullOrEmpty(p.Type) && p.Type.ToLower().Contains(searchTerm))).ToList();
+            }
             var userId = _userManager.GetUserId(User);
 
             var viewmodel = properties.Select(p => new PropertyViewModel
@@ -177,7 +182,7 @@ namespace Sheltos.Controllers
                 GalleryImages = p.Gallery.Select(g => g.ImageUrl).ToList(),
 
             }).ToList();
-
+            ViewBag.SearchTerm = searchTerm;    
             return View(viewmodel);
         }
         public async Task<IActionResult> Edit(int id)
@@ -344,10 +349,15 @@ namespace Sheltos.Controllers
             TempData["SuccessMessage"] = "Agent registered successfully!";
             return RedirectToAction("AgentList");
         }
-        public async Task<IActionResult> AgentList()
+        public async Task<IActionResult> AgentList(string? searchTerm)
         {
             var agents = await _agentRepository.GetAllAgentsAsync();
-
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                searchTerm = searchTerm.ToLower();
+                agents = agents.Where(p =>
+                    (!string.IsNullOrEmpty(p.FullName) && p.FullName.ToLower().Contains(searchTerm))).ToList();
+            }
             var viewModel = agents.Select(agent => new AgentListViewModel
             {
                 AgentId = agent.AgentId,
@@ -357,6 +367,7 @@ namespace Sheltos.Controllers
                 Image = agent.ImageUrl,
                 PropertyCount = agent.Properties?.Count() ?? 0
             });
+            ViewBag.SearchTerm = searchTerm;
             return View(viewModel);
         }
         public async Task<IActionResult> EditAgent(int id)

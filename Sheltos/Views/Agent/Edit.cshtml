@@ -1,6 +1,7 @@
 ﻿@using Sheltos.ViewModel
 @model PropertyViewModel
 @{
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -58,14 +59,10 @@
                     </div>
                     <li class="onhover-dropdown notification-box">
                         <a href="javascript:void(0)">
-                            <i data-feather="bell"></i>
-                            <span class="label label-shadow label-pill notification-badge">1</span>
+                           
                         </a>
                         <div class="notification-dropdown onhover-show-div">
-                            <div class="dropdown-title">
-                                <h6>Notifications</h6>
-                                <a href="favourites.html">Show all</a>
-                            </div>
+                           
                             <ul>
 
 
@@ -106,9 +103,9 @@
                             <img src="../assets/images/avatar/3.jpg" class="img-fluid" alt="">
                         </div>
                         <ul class="profile-dropdown onhover-show-div">
-                            <li><a href="user-profile.html"><span>Account </span><i data-feather="user"></i></a></li>
-                            <li><a href="listing.html"><span>Listing</span><i data-feather="file-text"></i></a></li>
-                            <li><a href="login.html"><span>Log in</span><i data-feather="log-in"></i></a></li>
+                            <li><a asp-action="Properties" asp-controller="Agent"><span>Listing </span><i data-feather="user"></i></a></li>
+
+                            <li><a asp-controller="Controller" asp-action="Login"><span>Log Out</span><i data-feather="log-out"></i></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -144,7 +141,7 @@
                     <div id="mainsidebar">
                         <ul class="sidebar-menu custom-scrollbar">
                             <li class="sidebar-item">
-                                <a href="index.html" class="sidebar-link only-link">
+                                <a asp-action="DashBoard" asp-controller="Agent" class="sidebar-link only-link">
                                     <i data-feather="airplay"></i>
                                     <span>Dashboard</span>
                                 </a>
@@ -156,25 +153,25 @@
                                 </a>
                                 <ul class="nav-submenu menu-content">
                                     <li>
-                                        <a href="add-property.html">
+                                        <a asp-action="AddProperty" asp-controller="Agent">
                                             <i data-feather="chevrons-right"></i>
                                             add property
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="listing.html">
+                                        <a asp-action="Properties" asp-controller="Agent">
                                             <i data-feather="chevrons-right"></i>
-                                            property list
+                                            Property List
                                         </a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="sidebar-item">
-                                <a href="Views.html" class="sidebar-link only-link">
+                                <a asp-controller="Agent" asp-action="Message" class="sidebar-link only-link">
                                     <i data-feather="users"></i>
-                                    <span>Views</span>
+                                    <span>Property Request</span>
                                 </a>
                             </li>
 
@@ -185,18 +182,12 @@
                                 </a>
                                 <ul class="nav-submenu menu-content">
                                     <li>
-                                        <a href="login.html">
+                                        <a asp-action="Login" asp-controller="Account">
                                             <i data-feather="chevrons-right"></i>
-                                            Log in
+                                            LogOut
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="signup.html">
-                                            <i data-feather="chevrons-right"></i>
-                                            sign up
-                                        </a>
-                                    </li>
-
+                                    
                                 </ul>
                             </li>
                             <li>

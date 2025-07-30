@@ -21,11 +21,13 @@
         Task<List<Feature>> GetfeaturesByNamesAsync(List<string> featureNames);
         Task UpdateProperty(Property property);
         Task DeleteProperty(Property property);
+        Task<PropertyRequest> GetPropertyRequestByIdAsync(int id);
+        Task DeleteRequest(PropertyRequest propertyRequest);
         Task<IEnumerable<Property>> AllPropertiesByAgent(int agentId);
         bool Save();
 
-       
-        Task DeleteAsync(int id);
+
+        Task<List<PropertyRequest>> GetPropertyRequestsAsync();
         IEnumerable<Property> AllPropertys();
         Task<IEnumerable<Property>> AllProperties();
 

@@ -262,10 +262,17 @@ namespace Sheltos.Controllers
             _logger.LogInformation("Property added successfully with title: {Title}", property.Title);
             return RedirectToAction("Dashboard", "Agent");
         }
-        public async Task<IActionResult> Properties()
+        public async Task<IActionResult> Properties(string? searchTerm)
         {
             var agent = await _agentRepository.GetAgentByEmail(User.Identity!.Name!);
+            
             var properties = await _propertyRepository.AllPropertiesByAgent(agent.AgentId);
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                searchTerm = searchTerm.ToLower();
+                properties = properties.Where(p =>
+                    (!string.IsNullOrEmpty(p.Type) && p.Type.ToLower().Contains(searchTerm))).ToList();
+            }
             if (agent == null)
             {
                 return RedirectToAction("Login", "Account");
@@ -289,6 +296,7 @@ namespace Sheltos.Controllers
                 GalleryImages = p.Gallery.Select(g => g.ImageUrl).ToList(),
 
             }).ToList();
+            ViewBag.SearchTerm = searchTerm;
 
             return View(viewmodel);
         }
@@ -414,6 +422,30 @@ namespace Sheltos.Controllers
             _logger.LogInformation("Property with ID {Id} deleted successfully.", Id);
 
             return RedirectToAction("Properties","Agent");
+        }
+        public async Task<IActionResult> Message()
+        {
+            var Messages = await _propertyRepository.GetPropertyRequestsAsync();
+            var message = Messages.Select(msg => new PropertyRequestViewModel
+            {
+                Id = msg.Id,
+                Name = msg.Name,
+                Email = msg.Email,
+                Subject = msg.Subject,
+                DateTime = msg.DateTime,
+            }).ToList();
+            return View(message);
+        }
+        public async Task<IActionResult> DeleteMessage(int id)
+        {
+            var message = await _propertyRepository.GetPropertyRequestByIdAsync(id);
+            if (message == null)
+            {
+                _logger.LogWarning("Message with ID {Id} not found for deletion.", id);
+                return RedirectToAction("MessageList");
+            }
+            _propertyRepository.DeleteRequest(message);
+            return RedirectToAction("Message","Agent");
         }
     }
 }

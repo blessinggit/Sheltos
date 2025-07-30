@@ -98,9 +98,22 @@ namespace Sheltos.Models.Repositories
 
         }
 
-        public Task DeleteAsync(int id)
+        public async Task<List<PropertyRequest>> GetPropertyRequestsAsync()
         {
-            throw new NotImplementedException();
+            return await _context.PropertyRequests
+                .Include(pr => pr.Property)
+                .ToListAsync();
+        }
+        public async Task<PropertyRequest> GetPropertyRequestByIdAsync(int id)
+        {
+            return await _context.PropertyRequests
+                .Include(pr => pr.Property)
+                .FirstOrDefaultAsync(pr => pr.Id == id);
+        }
+        public async Task DeleteRequest(PropertyRequest propertyRequest)
+        {
+            _context.PropertyRequests.Remove(propertyRequest);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Property>> GetRelatedProperties(string Type)

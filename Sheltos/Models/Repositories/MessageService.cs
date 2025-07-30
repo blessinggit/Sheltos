@@ -37,7 +37,7 @@ namespace Sheltos.Models.Repositories
                 .Select(m => new UserMessageViewModel
                 {
                     Id = m.Id,
-                    Text = m.SenderId,
+                    Text = m.Content,
                     Date = m.Timestamp.ToShortDateString(),
                     Time = m.Timestamp.ToShortTimeString(),
                     IsCurrentUserSentMessage = m.SenderId == currentUserId
@@ -47,9 +47,24 @@ namespace Sheltos.Models.Repositories
             return chatViewModel;
         }
 
-        public Task<IEnumerable<MessageUserListViewModel>> GetUsers()
+        public async Task<IEnumerable<MessageUserListViewModel>> GetUsers()
         {
-            throw new NotImplementedException();
+            var currentUserId = _currentUserService.UserId;
+
+            var users = await _context.Users
+                .Where(u => u.Id != currentUserId)
+                .Select(u => new MessageUserListViewModel()
+                {
+                    Id = u.Id,
+                    UserName = u.UserName,
+                    LastMessage = _context.ChatMessages.Where(m => (m.SenderId == currentUserId || m.SenderId == u.Id) && (m.ReceiverId == currentUserId || m.ReceiverId == u.Id))
+                        .OrderByDescending(m => m.Timestamp)
+                        .Select(m => m.Content)
+                        .FirstOrDefault()
+
+                })
+                .ToListAsync();
+            return users;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@using Sheltos.ViewModel
 @model PropertyDetailViewModel
 @{
-   
+    Layout = "_Layout2";
 }
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -312,7 +312,7 @@
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
                         </div>
-					<h2 class="price">@Model.Property.Price.ToString()</h2>
+					<h2 class="price">@Model.Property.Price.ToString("C")</h2>
 
                     </div>
                 </div>

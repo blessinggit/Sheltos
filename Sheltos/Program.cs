@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using ServiceStack.Text;
 using Sheltos.Data;
+using Sheltos.Hubs;
 using Sheltos.Models;
 using Sheltos.Models.Repositories;
 
@@ -30,6 +31,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IFavouriteRepository, FavouriteRepository>();
 builder.Services.AddScoped<ICardRepository, CardRepository>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+builder. Services.AddSignalR();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddHttpContextAccessor();
@@ -75,6 +78,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<ChatHub>("/chathub");
 app.MapRazorPages();
 
 app.Run();

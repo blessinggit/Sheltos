@@ -1,6 +1,7 @@
 ﻿@using Sheltos.ViewModel
 @model AgentViewModel
 @{
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -65,9 +66,9 @@
                             <img src="~/assets1/images/avatar/3.jpg" class="img-fluid" alt="">
                         </div>
                         <ul class="profile-dropdown onhover-show-div">
-                            <li><a href="user-profile.html"><span>Account </span><i data-feather="user"></i></a></li>
-                            <li><a href="listing.html"><span>Listing</span><i data-feather="file-text"></i></a></li>
-                            <li><a href="login.html"><span>Log in</span><i data-feather="log-in"></i></a></li>
+                            <li><a asp-action="Dashboard" asp-controller="Admin"><span>Account </span><i data-feather="user"></i></a></li>
+                           
+                            <li><a asp-action="Login" asp-controller="Account"><span>Log Out</span><i data-feather="log-in"></i></a></li>
                         </ul>
                     </li>
                 </ul>
