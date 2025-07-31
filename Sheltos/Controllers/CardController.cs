@@ -13,7 +13,11 @@ namespace Sheltos.Controllers
         private readonly ICardRepository _cardRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<CardController> _logger;
-        public CardController(ICardRepository cardRepository, UserManager<ApplicationUser> userManager, ILogger<CardController> logger)
+        public CardController(
+            ICardRepository cardRepository,
+            UserManager<ApplicationUser> userManager,
+            ILogger<CardController> logger)
+
         {
             _cardRepository = cardRepository;
             _userManager = userManager;
@@ -42,9 +46,11 @@ namespace Sheltos.Controllers
             viewModel.NewCard = new CardListViewModel();
             return View(viewModel);
         }
+
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public IActionResult Add()
         { return View(); }
+
         [HttpPost]
         public async Task<IActionResult> Add(CardViewModel model)
         {
@@ -56,6 +62,7 @@ namespace Sheltos.Controllers
                 {
                     return RedirectToAction("Login", "Account");
                 }
+
                 Card card = new Card()
                 {
                     CardName = model.NewCard.CardName,
@@ -69,6 +76,7 @@ namespace Sheltos.Controllers
                 await _cardRepository.AddCardAsync(card);
 
             }
+
             _logger.LogWarning("ModelState is invalid while adding card.");
 
             foreach (var entry in ModelState)
@@ -133,6 +141,8 @@ namespace Sheltos.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -140,12 +150,14 @@ namespace Sheltos.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+
             var card = await _cardRepository.GetCardByIdAsync(id);
             if (card == null || card.UserId != user.Id)
             {
                 ModelState.AddModelError("", "No Card Found");
                 return RedirectToAction("Index");
             }
+
             await _cardRepository.DeleteCardAsync(card);
             return RedirectToAction("Index");
         }

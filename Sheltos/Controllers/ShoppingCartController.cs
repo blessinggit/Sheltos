@@ -17,8 +17,11 @@ namespace Sheltos.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ICardRepository _cardrepo;
 
-        public ShoppingCartController(IShoppingCartRepository shoppingCartRepository,IPropertyRepository propertyRepository,
-            UserManager<ApplicationUser> userManager,ICardRepository cardrepo)
+        public ShoppingCartController(
+            IShoppingCartRepository shoppingCartRepository,
+            IPropertyRepository propertyRepository,
+            UserManager<ApplicationUser> userManager,
+            ICardRepository cardrepo)
         {
             _shoppingCartRepository = shoppingCartRepository;
             _propertyRepository = propertyRepository;
@@ -43,6 +46,8 @@ namespace Sheltos.Controllers
             };
             return View(viewModel);
         }
+
+        [HttpPost]
         public IActionResult AddToShoppingCart(int id)
         {
             if (!User.Identity.IsAuthenticated)
@@ -60,6 +65,8 @@ namespace Sheltos.Controllers
             return Redirect(Request.Headers["Referer"].ToString());
 
         }
+
+        [HttpPost]
         public IActionResult RemoveFromCart(int id)
         {
             var userId = _userManager.GetUserId(User);
@@ -67,6 +74,7 @@ namespace Sheltos.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+
             var selectedProperty = _propertyRepository.AllPropertys().FirstOrDefault(p => p.Id == id);
 
             if (selectedProperty != null)
@@ -77,6 +85,8 @@ namespace Sheltos.Controllers
             return Redirect(Request.Headers["Referer"].ToString());
 
         }
+
+
         [HttpGet]
         public async Task<IActionResult> CheckOut()
         {
@@ -102,12 +112,12 @@ namespace Sheltos.Controllers
         public async Task<IActionResult> Checkout(CheckOutViewModel checkOut)
         {
             var userId = _userManager.GetUserId(User);
+
             var items = _shoppingCartRepository.GetItems(userId);
             if (items.Count == 0)
             {
                 return Redirect(Request.Headers["Referer"].ToString());
             }
-           
 
             var checkout = new Checkout
             {
@@ -124,8 +134,6 @@ namespace Sheltos.Controllers
                     PropertyId = item.Property.Id,
                     TotalAmount = item.Property.Price
                 }).ToList(),
-               
-               
             };
 
             await _shoppingCartRepository.AddCheckoutAsync(checkout);

@@ -24,13 +24,8 @@
         Task<PropertyRequest> GetPropertyRequestByIdAsync(int id);
         Task DeleteRequest(PropertyRequest propertyRequest);
         Task<IEnumerable<Property>> AllPropertiesByAgent(int agentId);
-        bool Save();
-
-
-        Task<List<PropertyRequest>> GetPropertyRequestsAsync();
+        Task<List<PropertyRequest>> GetPropertyRequestsAsync(int agentid);
         IEnumerable<Property> AllPropertys();
         Task<IEnumerable<Property>> AllProperties();
-
-       
     }
 }

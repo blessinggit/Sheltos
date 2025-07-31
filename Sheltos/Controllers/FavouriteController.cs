@@ -13,12 +13,16 @@ namespace Sheltos.Controllers
     {
         public readonly UserManager<ApplicationUser> _userManager;
         public readonly ApplicationDbContext _context;
-        public FavouriteController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
+        public FavouriteController(
+            UserManager<ApplicationUser> userManager,
+            ApplicationDbContext context)
+
         {
             _userManager = userManager;
             _context = context;
         }
-        [HttpGet]
+
+        [HttpPost]
         public async Task<IActionResult> Add(int Propertyid)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -29,7 +33,7 @@ namespace Sheltos.Controllers
             var favorited = await _context.Favourites.FirstOrDefaultAsync(f => f.UserId == user.Id && f.PropertyId == Propertyid);
             if (favorited == null)
             {
-                // If not favorited, add it
+                
                 var favourite = new Favourite
                 {
                     UserId = user.Id,
@@ -40,6 +44,8 @@ namespace Sheltos.Controllers
             }
             return Redirect(Request.Headers["Referer"].ToString());
         }
+
+        [HttpPost]
         public async Task<IActionResult> Remove(int propertyid)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -50,15 +56,18 @@ namespace Sheltos.Controllers
             var favourited = await _context.Favourites.FirstOrDefaultAsync(f => f.UserId == user.Id && f.PropertyId == propertyid);
             if (favourited != null)
             {
-                // If favorited, remove it
+               
                 _context.Favourites.Remove(favourited);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction("MyFavourites");
         }
+
+        [HttpGet]
         public async Task<IActionResult> MyFavourites()
         {
             var user = await _userManager.GetUserAsync(User);
+
             if (user == null)
             {
                 return RedirectToAction("Login", "Account");
@@ -69,10 +78,11 @@ namespace Sheltos.Controllers
                 .ThenInclude(p => p.Address)
                 .Include(f => f.Property.Gallery)
                 .ToListAsync();
+
             var viewModel = favourite.Select(f => new FavouriteListViewModel
             {
                 PropertyId = f.Property.Id,
-                Title = f.Property.Title,
+                Title = f.Property.Title?? string.Empty,
                 Address = $"{f.Property.Address.City}, {f.Property.Address.State}, {f.Property.Address.Country}",
                 Price = f.Property.Price,
                 Beds = f.Property.Beds,
@@ -83,6 +93,7 @@ namespace Sheltos.Controllers
                 PropertyStatus = f.Property.PropertyStatus.ToString(),
                 IsFavourite = true
             }).ToList();
+
             return View(viewModel);
 
 

@@ -8,11 +8,14 @@ namespace Sheltos.Models.Repositories
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        public UserRepository(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public UserRepository(
+            ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
+
         public async Task<ApplicationUser?> GetAdminAsync()
         {
             var users = await _userManager.GetUsersInRoleAsync("Admin");

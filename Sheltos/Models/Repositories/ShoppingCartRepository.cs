@@ -12,7 +12,6 @@ namespace Sheltos.Models.Repositories
             _context = context;
         }
 
-
         public List<ShoppingCartItems> ShoppingCartItems { get; set; }
 
         public void AddToCart(Property property, string userId)
@@ -20,6 +19,7 @@ namespace Sheltos.Models.Repositories
             var item = _context.ShoppingCartItems.Include(x => x.Property)
                .ThenInclude(p => p.Address)
                .SingleOrDefault(x => x.Property.Id == property.Id && x.UserId == userId);
+
             if (item == null)
             {
                 item = new ShoppingCartItems
@@ -29,11 +29,11 @@ namespace Sheltos.Models.Repositories
                     UserId = userId,
                     Quantity = 1
                 };
+
                 _context.ShoppingCartItems.Add(item);
             }
             _context.SaveChanges();
         }
-
 
         public void RemoveItem(Property property, string userId)
         {
@@ -44,6 +44,7 @@ namespace Sheltos.Models.Repositories
             }
             _context.SaveChanges();
         }
+
         public async Task ClearCartAsync(string userId)
         {
             var items = await _context.ShoppingCartItems
@@ -53,11 +54,13 @@ namespace Sheltos.Models.Repositories
             _context.ShoppingCartItems.RemoveRange(items);
             await _context.SaveChangesAsync();
         }
+
         public List<ShoppingCartItems> GetItems(string userId)
         {
 
             if (ShoppingCartItems != null)
                 return ShoppingCartItems;
+
             ShoppingCartItems ??= _context.ShoppingCartItems.Where(s => s.UserId == userId)
                .Include(x => x.Property)
                .ThenInclude(x => x.Address)
@@ -65,19 +68,21 @@ namespace Sheltos.Models.Repositories
                .ThenInclude(x => x.Gallery)
                .ToList();
             return ShoppingCartItems;
-
         }
+
         public double GetShoppingItemsTotal(string userId)
         {
             var total = _context.ShoppingCartItems.Where(x => x.UserId == userId)
                 .Select(i => i.Property.Price).Sum();
             return total;
         }
+
         public async Task AddCheckoutAsync(Checkout checkout)
         {
             await _context.Checkouts.AddAsync(checkout);
             await _context.SaveChangesAsync();
         }
+
         public async Task<List<Checkout>> GetCheckoutsAsync()
         {
             return await _context.Checkouts
@@ -85,6 +90,7 @@ namespace Sheltos.Models.Repositories
                 .ThenInclude(c => c.Property)
                 .ToListAsync();
         }
+
         public async Task<Checkout> GetCheckOutByIdAsync(int id)
         {
             return await _context.Checkouts
@@ -93,11 +99,13 @@ namespace Sheltos.Models.Repositories
                 .ThenInclude(c => c.Agent)
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
+
         public async Task UpdateCheckoutAsync(Checkout checkout)
         {
              _context.Checkouts.Update(checkout);
             await _context.SaveChangesAsync();
         }
+
         public async Task DeleteCheckoutAsync(Checkout checkout)
         {
             _context.Checkouts.Remove(checkout);

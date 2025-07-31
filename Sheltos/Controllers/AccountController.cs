@@ -13,21 +13,28 @@ namespace Sheltos.Controllers
         private readonly IWebHostEnvironment _environment;
         private readonly IServiceProvider _serviceProvider;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IWebHostEnvironment environment, IServiceProvider serviceProvider)
+        public AccountController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IWebHostEnvironment environment,
+            IServiceProvider serviceProvider)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _environment = environment;
             _serviceProvider = serviceProvider;
         }
+
         public IActionResult Register()
         {
             return View();
         }
+
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel RegisterVM)
         {
@@ -53,6 +60,7 @@ namespace Sheltos.Controllers
             }
             return View(RegisterVM);
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginVM)
         {
@@ -95,10 +103,12 @@ namespace Sheltos.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
+
         public IActionResult CompleteProfile()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> CompleteProfile(CompleteProfileViewModel completeProfileVM)
         {
@@ -123,6 +133,7 @@ namespace Sheltos.Controllers
                 }
                 user.ProfileImageUrl = "/users/" + newFileName;
             }
+
             user.ProfileCompleted = true;
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
@@ -135,6 +146,7 @@ namespace Sheltos.Controllers
             }
             return View(completeProfileVM);
         }
+
         public async Task<IActionResult> DeleteAccount()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -144,12 +156,7 @@ namespace Sheltos.Controllers
                 return RedirectToAction("Login");
             }
             return RedirectToAction("Index", "Home");
-
-
         }
-        
-
     }
-
 }
     

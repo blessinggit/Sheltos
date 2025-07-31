@@ -23,6 +23,7 @@ namespace Sheltos.Models.Repositories
                 Body = htmlMessage,
                 IsBodyHtml = true
             };
+
             mail.To.Add(to);
 
             using var smtp = new SmtpClient(smtpConfig["Host"], int.Parse(smtpConfig["Port"]))

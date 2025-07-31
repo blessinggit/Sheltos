@@ -1,19 +1,12 @@
 ﻿using System.Net;
 using System.Net.Mail;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Rotativa.AspNetCore;
-using Sheltos.Data;
 using Sheltos.Data.Enum;
 using Sheltos.Models;
 using Sheltos.Models.Repositories;
 using Sheltos.ViewModel;
 using Sheltos.ViewModel.Admin;
-using Sheltos.ViewModel.Property;
-using static System.Net.Mime.MediaTypeNames;
 using IEmailSender = Sheltos.Models.Repositories.IEmailSender;
 
 namespace Sheltos.Controllers
@@ -63,6 +56,7 @@ namespace Sheltos.Controllers
             return View(viewModel);
 
         }
+        [HttpGet]
         public async Task<IActionResult> AddProperty()
         {
             var featurenames = await _propertyRepository.GetAllFeaturesAsync();
@@ -152,6 +146,8 @@ namespace Sheltos.Controllers
             _logger.LogInformation("Property added successfully with title: {Title}", property.Title);
             return RedirectToAction("Dashboard", "Admin");
         }
+
+        [HttpGet]
         public async Task<IActionResult> List(string? searchTerm)
         {
             var properties = await _propertyRepository.AllProperties();
@@ -185,6 +181,7 @@ namespace Sheltos.Controllers
             ViewBag.SearchTerm = searchTerm;    
             return View(viewmodel);
         }
+
         public async Task<IActionResult> Edit(int id)
         {
             var property = await _propertyRepository.GetByIdAsync(id);
@@ -214,6 +211,7 @@ namespace Sheltos.Controllers
             };
             return View(viewModel);
         }
+
         [HttpPost]
         public async Task<IActionResult> Edit(PropertyViewModel propertyVM)
         {
@@ -281,6 +279,8 @@ namespace Sheltos.Controllers
             await _propertyRepository.UpdateProperty(property);
             return RedirectToAction("List");
         }
+
+        [HttpPost]
         public async Task<IActionResult> DeleteProperty(int Id)
         {
             var property = await _propertyRepository.GetByIdAsync(Id);
@@ -308,7 +308,9 @@ namespace Sheltos.Controllers
 
             return RedirectToAction("List");
         }
-        public async Task<IActionResult> AddAgent()
+
+        [HttpGet]
+        public IActionResult AddAgent()
         {
             return View();
         }
@@ -349,6 +351,7 @@ namespace Sheltos.Controllers
             TempData["SuccessMessage"] = "Agent registered successfully!";
             return RedirectToAction("AgentList");
         }
+
         public async Task<IActionResult> AgentList(string? searchTerm)
         {
             var agents = await _agentRepository.GetAllAgentsAsync();
@@ -370,6 +373,8 @@ namespace Sheltos.Controllers
             ViewBag.SearchTerm = searchTerm;
             return View(viewModel);
         }
+
+        [HttpGet]
         public async Task<IActionResult> EditAgent(int id)
         {
             var agent = await _agentRepository.GetAgentByIdAsync(id);
@@ -393,6 +398,7 @@ namespace Sheltos.Controllers
             };
             return View(viewModel);
         }
+
         [HttpPost]
         public async Task<IActionResult> EditAgent(AgentViewModel agentVM)
         {
@@ -447,6 +453,8 @@ namespace Sheltos.Controllers
             TempData["SuccessMessage"] = "Agent updated successfully!";
             return RedirectToAction("AgentList");
         }
+
+        [HttpGet]
         public async Task<IActionResult> DeleteAgent(int Id)
         {
             var agent = await _agentRepository.GetAgentByIdAsync(Id);
@@ -470,25 +478,32 @@ namespace Sheltos.Controllers
 
             return RedirectToAction("AgentList");
         }
+
+        [HttpGet]
         public async Task<IActionResult> PendingAgentsList()
         {
             var pendingagents = await _agentRepository.PendingAgentsList();
             return View(pendingagents);
         }
+
+        [HttpPost]
         public async Task<IActionResult> ApproveAgent(int id)
         {
             var pendingAgent = await _agentRepository.GetPendingAgentByIdAsync(id);
+
             if (pendingAgent == null)
             {
                 _logger.LogWarning("Pending agent with ID {Id} not found for approval.", id);
                 return RedirectToAction("PendingAgentsList");
             }
+
             var existingUser = await _userManager.FindByEmailAsync(pendingAgent.Email);
             if (existingUser != null)
             {
                 TempData["Error"] = "A user with this email already exists.";
                 return RedirectToAction("PendingAgentsList");
             }
+
             var existingAgent = await _agentRepository.GetAgentByEmailAsync(pendingAgent.Email);
             if (existingAgent != null)
             {
@@ -496,7 +511,7 @@ namespace Sheltos.Controllers
                 return RedirectToAction("PendingAgentsList");
             }
 
-            var password = Guid.NewGuid().ToString().Substring(0, 8) + "@A1"; // Or a secure method
+            var password = Guid.NewGuid().ToString().Substring(0, 8) + "@A1"; 
 
             var user = new ApplicationUser
             {
@@ -542,6 +557,8 @@ namespace Sheltos.Controllers
             TempData["SuccessMessage"] = "Agent approved successfully!";
             return RedirectToAction("PendingAgentsList");
         }
+
+        [HttpPost]
         public async Task<IActionResult> RejectAgent(int id)
         {
             var pendingAgent = await _agentRepository.GetPendingAgentByIdAsync(id);
@@ -554,9 +571,12 @@ namespace Sheltos.Controllers
             TempData["SuccessMessage"] = "Pending agent rejected successfully!";
             return RedirectToAction("PendingAgentsList");
         }
+
+        [HttpGet]
         public async Task<IActionResult> MessageList()
         {
             var Messages = await _pagesRepository.GetAllMessagesAsync();
+
             var message = Messages.Select(msg => new ContactUsViewModel
             {
                 Id = msg.Id,
@@ -568,6 +588,8 @@ namespace Sheltos.Controllers
             return View(message);
 
         }
+
+        [HttpPost]
         public async Task<IActionResult> DeleteMessage(int id)
         {
             var message = await _pagesRepository.GetMessageByIdAsync(id);
@@ -580,6 +602,7 @@ namespace Sheltos.Controllers
             TempData["SuccessMessage"] = "Message deleted successfully!";
             return RedirectToAction("MessageList");
         }
+
         [HttpGet]
         public async Task<IActionResult> PaymentList()
         {
@@ -596,19 +619,25 @@ namespace Sheltos.Controllers
             }).ToList();
             return View(payment);
         }
+
+        [HttpPost]
         public async Task<IActionResult> TogglePaymentStatus(int id)
         {
             var payment = await _shoppingCartRepository.GetCheckOutByIdAsync(id);
+
             if (payment == null)
             {
                 _logger.LogWarning("Payment with ID {Id} not found for status toggle.", id);
                 return NotFound();
             }
             payment.PaymentStatus = payment.PaymentStatus == "Pending" ? "Paid" : "Pending";
+
             await _shoppingCartRepository.UpdateCheckoutAsync(payment);
             return RedirectToAction("PaymentList");
             
         }
+
+        [HttpPost]
         public async Task<IActionResult> DeleteInvoice(int id)
         {
             var payment = await _shoppingCartRepository.GetCheckOutByIdAsync(id);
@@ -617,9 +646,12 @@ namespace Sheltos.Controllers
                 _logger.LogWarning("Payment with ID {Id} not found for status toggle.", id);
                 return NotFound();
             }
+
             await _shoppingCartRepository.DeleteCheckoutAsync(payment);
             return RedirectToAction("PaymentList");
         }
+
+        [HttpPost]
         public async Task<IActionResult> GenerateInvoice(int id)
         {
             var payment = await _shoppingCartRepository.GetCheckOutByIdAsync(id);
@@ -651,6 +683,8 @@ namespace Sheltos.Controllers
             }
             return View(viewModel);
         }
+
+        [HttpPost]
         private async Task SendPaymentConfirmationEmail(InvoiceViewModel payment)
         {
             var invoiceNumber = $"INV-{payment.Id}-{DateTime.UtcNow:yyyyMMddHH}";
@@ -664,7 +698,7 @@ namespace Sheltos.Controllers
                     This is to confirm that we have received your payment for the property you selected.<br/>
                     Your invoice is now ready and available for download or pickup.<br/><br/>
                     <strong>Invoice Number:</strong> {invoiceNumber}<br/>
-                    <strong>Total Amount:</strong> ₦{payment.TotalAmount}<br/><br/>
+                    <strong>Total Amount:</strong> ₦{payment.TotalAmount.ToString()}<br/><br/>
                     Thank you for choosing <strong>Sheltos</strong>.<br/><br/>
                     Warm regards,<br/>
                     Sheltos Team
@@ -683,7 +717,5 @@ namespace Sheltos.Controllers
             await smtp.SendMailAsync(message);
         }
     }
-
-    
 }
 

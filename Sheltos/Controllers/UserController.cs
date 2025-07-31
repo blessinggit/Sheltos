@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Sheltos.Models;
@@ -12,7 +11,9 @@ namespace Sheltos.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment _environment;
-        public UserController(UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
+        public UserController(
+            UserManager<ApplicationUser> userManager,
+            IWebHostEnvironment environment)
         {
             _userManager = userManager;
             _environment = environment;
@@ -27,6 +28,8 @@ namespace Sheltos.Controllers
 
             return View(user);
         }
+
+        [HttpPost]
         public async Task<IActionResult> EditProfile(EditProfileViewModel editVM)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -34,16 +37,19 @@ namespace Sheltos.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+
             user.FullName = editVM.FullName;
             user.PhoneNumber = editVM.PhoneNumber;
             user.Email = editVM.Email;
             user.Address = editVM.Address;
             user.DateOfBirth = editVM.DateOfBirth;
             user.Gender = editVM.Gender;
+
             await _userManager.UpdateAsync(user);
             return RedirectToAction("Dashboard");
 
         }
+
         [HttpPost]
         public async Task<IActionResult> ChangeImage(IFormFile imageFile)
         {
@@ -52,6 +58,7 @@ namespace Sheltos.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+
             string oldFileName = user.ProfileImageUrl;
             if (imageFile != null && imageFile.Length > 0)
             {
@@ -72,10 +79,11 @@ namespace Sheltos.Controllers
                 user.ProfileImageUrl = "/users/" + newFileName;
                 await _userManager.UpdateAsync(user);
             }
+
             return RedirectToAction("Dashboard");
-
-
         }
+
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View();

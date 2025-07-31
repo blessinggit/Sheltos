@@ -37,141 +37,16 @@
 
 
 <body>
-@*    <!-- Loader start -->
+   <!-- Loader start -->
     <div class="loader-wrapper">
         <div class="row loader-img">
             <div class="col-12">
-                <img src="../assets/images/loader/loader-2.gif" class="img-fluid" alt="">
+                <img src="~/assets/images/loader/loader-2.gif" class="img-fluid" alt="">
             </div>
         </div>
     </div>
-    <!-- Loader end -->*@
-    <!-- header start -->
-    <header class="inner-page light-header shadow-cls">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="menu">
-                        <div class="brand-logo">
-                            <a href="https://themes.pixelstrap.com/sheltos/index.html">
-                                <img src="~/assets/images/logo/4.png" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                        <nav>
-                            <div class="main-navbar">
-                                <div id="mainnav">
-                                    <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
-                                    <ul class="nav-menu">
-                                        <li class="back-btn">
-                                            <div class="mobile-back text-end">
-                                                <span>Back</span>
-                                                <i aria-hidden="true" class="fa fa-angle-right ps-2"></i>
-                                            </div>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="HomePage.html" class="nav-link menu-title">Home</a>
-
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0)" class="nav-link menu-title">property</a>
-                                            <ul class="nav-submenu menu-content">
-                                                <li><a asp-controller="Property" asp-action="Index">All</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Apartment">Apartment</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Duplex">Duplex</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Mansion">Mansion</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Land">Land</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Lodge">Lodge</a></li>
-                                                <li><a asp-controller="Property" asp-action="Index" asp-route-type="Hotel">Hotel</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0)" class="nav-link menu-title">Pages</a>
-                                            <ul class="nav-submenu menu-content">
-
-                                                <li><a asp-controller="Pages" asp-action="About-Us">About Us </a></li>
-                                                <li><a href="terms-conditions.html">Terms&Conditions</a></li>
-                                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                                <li><a href="contact-2.html">Contact Us</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="user-profile.html" class="nav-link menu-title">User</a>
-
-                                        </li>
-
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0)" class="nav-link menu-title">agent</a>
-                                            <ul class="nav-submenu menu-content">
-
-                                                <li><a href="agent-list.html">Agent List</a></li>
-                                                <li><a href="add-agent.html">Agent Registration</a></li>
-                                            </ul>
-                                        </li>
-
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </nav>
-                        <ul class="header-right">
-                            <li class="right-menu color-6">
-                                <ul class="nav-menu">
-                                    <li class="dropdown">
-                                        <a href="user-favourites.html">
-                                            <i data-feather="heart"></i>
-                                        </a>
-                                    </li>
-                                    <li class="dropdown cart">
-                                        <a href="javascript:void(0)">
-                                            <i data-feather="shopping-cart"></i>
-                                        </a>
-                                        <ul class="nav-submenu">
-                                            <li>
-                                                <div class="media">
-                                                    <img src="~/assets/images/property/2.jpg" class="img-fluid" alt="">
-                                                    <div class="media-body">
-                                                        <a href="Propertydetails.html"><h5>Magnolia Ranch</h5></a>
-                                                        <span>$120.00*</span>
-                                                    </div>
-                                                </div>
-                                                <div class="close-circle">
-                                                    <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <img src="~/assets/images/property/3.jpg" class="img-fluid" alt="">
-                                                    <div class="media-body">
-                                                        <a href="Propertydetails.html"><h5>Magnolia Ranch</h5></a>
-                                                        <span>$140.00*</span>
-                                                    </div>
-                                                </div>
-                                                <div class="close-circle">
-                                                    <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="total">
-                                                    <h5>Subtotal :- <span class="float-end">$260.00</span></h5>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="login.html">
-                                            <i data-feather="user"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!--  header end -->
+    <!-- Loader end -->
+   
 <!-- slider section start -->
 <style>
     .property-image-grid {
@@ -413,7 +288,7 @@
                                                             <p class="mb-0">@review.Comment</p>
                                                         </div>
                                                         <div class="rating">
-                                                            <a asp-action="Delete" asp-controller="Property" asp-route-reviewId="@review.Id">
+                                                            <a asp-action="Delete" asp-controller="Property" asp-route-reviewId="@review.Id" asp-route-propertyId="@review.PropertyId">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" color="orange" class="bi bi-trash3" viewBox="0 0 16 16">
                                                                     <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
                                                                 </svg>

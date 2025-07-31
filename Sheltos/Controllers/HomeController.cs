@@ -1,8 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Sheltos.Data;
 using Sheltos.Models;
 using Sheltos.Models.Repositories;
 using Sheltos.ViewModel;
@@ -16,11 +14,13 @@ namespace Sheltos.Controllers
         private readonly IShoppingCartRepository _shoppingCartRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IFavouriteRepository _favouriteRepo;
-    
-        
 
-        public HomeController(ILogger<HomeController> logger,IPropertyRepository propertyRepository,IShoppingCartRepository shoppingCartRepository,
-            UserManager<ApplicationUser> userManager,IFavouriteRepository favouriteRepo)
+        public HomeController(
+            ILogger<HomeController> logger,
+            IPropertyRepository propertyRepository,
+            IShoppingCartRepository shoppingCartRepository,
+            UserManager<ApplicationUser> userManager,
+            IFavouriteRepository favouriteRepo)
         {
             _propertyrepos = propertyRepository;
             _logger = logger;
@@ -74,6 +74,7 @@ namespace Sheltos.Controllers
                 GalleryImages = p.Gallery.Select(g => g.ImageUrl).ToList(),
                 IsFavourite = favIds.Contains(p.Id)
             }).ToList();
+
             var rentViewModel = latestRent.Select(p => new PropertyViewModel
             {
                 Id = p.Id,
@@ -94,6 +95,7 @@ namespace Sheltos.Controllers
                 IsFavourite = favIds.Contains(p.Id)
 
             }).ToList();
+
             var viewModel = new HomeViewModel
             {
                 LatestForSale = saleViewModel,
@@ -104,10 +106,7 @@ namespace Sheltos.Controllers
             return View(viewModel);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
